@@ -1,0 +1,13 @@
+group "ru.salix.ejournal"
+version "1.0.0"
+
+ext {
+    postgresqlVersion = "42.2.5"
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+
+    compile "org.postgresql:postgresql:$postgresqlVersion"
+}
