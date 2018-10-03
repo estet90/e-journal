@@ -1,0 +1,1 @@
+DROP INDEX ejournal.test_idx;
