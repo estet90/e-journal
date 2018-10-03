@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "exam_mark")
+@Table(schema = "ejournal", name = "exam_mark")
 public class ExamMark extends Mark {
 
     @ManyToOne

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "pupil")
+@Table(schema = "ejournal", name = "pupil")
 public class Pupil extends BaseEntity {
 
     @ManyToOne

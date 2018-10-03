@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "subject_teacher")
+@Table(schema = "ejournal", name = "subject_teacher")
 public class SubjectTeacher extends BaseEntity {
 
     @ManyToOne

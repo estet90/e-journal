@@ -2,8 +2,8 @@ spring:
   application.name: api
   datasource:
     url: jdbc:postgresql://localhost:5432/ejournal
-    username: postgres
-    password: postgres
+    username: ejournalapp
+    password: ejournalapp
   jpa:
     properties.hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect

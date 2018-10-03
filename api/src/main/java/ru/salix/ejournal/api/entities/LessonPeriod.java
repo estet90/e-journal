@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "lesson_period")
+@Table(schema = "ejournal", name = "lesson_period")
 public class LessonPeriod extends BaseEntity {
 
     @Column(name = "number")

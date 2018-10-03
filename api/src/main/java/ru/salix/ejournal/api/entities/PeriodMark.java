@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "period_mark")
+@Table(schema = "ejournal", name = "period_mark")
 public class PeriodMark extends Mark {
 
     @ManyToOne

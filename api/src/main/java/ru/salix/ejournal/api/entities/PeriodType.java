@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "period_type")
+@Table(schema = "ejournal", name = "period_type")
 public class PeriodType extends BaseEntity {
 
     @Column(name = "name")

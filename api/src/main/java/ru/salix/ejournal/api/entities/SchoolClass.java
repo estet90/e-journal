@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "class")
+@Table(schema = "ejournal", name = "class")
 public class SchoolClass extends BaseEntity {
 
     @Column(name = "number")

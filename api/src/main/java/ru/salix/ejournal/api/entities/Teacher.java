@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "teacher")
+@Table(schema = "ejournal", name = "teacher")
 public class Teacher extends BaseEntity {
 
     @Column(name = "name")

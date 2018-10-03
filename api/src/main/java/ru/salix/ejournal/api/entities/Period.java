@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "period")
+@Table(schema = "ejournal", name = "period")
 public class Period extends BaseEntity {
 
     @ManyToOne
