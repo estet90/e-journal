@@ -16,7 +16,7 @@ public class Subject extends BaseEntity {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "subject_teacher",
+    @JoinTable(schema = "ejournal", name = "subject_teacher",
             joinColumns = @JoinColumn(name = "id_subject"),
             inverseJoinColumns = @JoinColumn(name = "id_teacher"))
     private List<Teacher> teachers;

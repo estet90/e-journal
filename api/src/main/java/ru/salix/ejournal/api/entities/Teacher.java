@@ -25,8 +25,12 @@ public class Teacher extends BaseEntity {
     private String description;
 
     @ManyToMany
-    @JoinTable(name = "subject_teacher",
+    @JoinTable(schema = "ejournal", name = "subject_teacher",
             joinColumns = @JoinColumn(name = "id_teacher"),
             inverseJoinColumns = @JoinColumn(name = "id_subject"))
     private List<Subject> subjects;
+
+    @OneToMany
+    @JoinColumn(name = "id_teacher")
+    private List<SchoolClass> classes;
 }

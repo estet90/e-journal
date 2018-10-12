@@ -1,3 +1,5 @@
+server.servlet.context-path: /api/v1
+
 spring:
   application.name: api
   datasource:
@@ -8,6 +10,8 @@ spring:
     properties.hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
       temp.use_jdbc_metadata_defaults: false
+      show_sql: true
+      format_sql: true
   liquibase:
     change-log: classpath:/db/changelog.xml
     user: postgres
