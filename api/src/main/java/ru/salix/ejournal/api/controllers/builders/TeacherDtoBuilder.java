@@ -8,9 +8,6 @@ import ru.salix.ejournal.api.entities.Teacher;
 
 import java.util.List;
 
-import static java.util.Collections.emptyList;
-import static java.util.Optional.ofNullable;
-
 @Component
 public class TeacherDtoBuilder extends AbstractBuilder<TeacherDto, Teacher> {
 
@@ -32,8 +29,8 @@ public class TeacherDtoBuilder extends AbstractBuilder<TeacherDto, Teacher> {
                 .surname(teacher.getSurname())
                 .patronymic(teacher.getPatronymic())
                 .description(teacher.getDescription())
-                .subjects(ofNullable(subjects).orElse(emptyList()))
-                .classes(ofNullable(classes).orElse(emptyList()))
+                .subjects(subjects)
+                .classes(classes)
                 .build();
     }
 

@@ -9,15 +9,14 @@ import ru.salix.ejournal.api.controllers.dto.SchoolClassDto;
 import ru.salix.ejournal.api.controllers.dto.SubjectDto;
 import ru.salix.ejournal.api.controllers.dto.TeacherDto;
 import ru.salix.ejournal.api.controllers.dto.TeacherFilterDto;
-import ru.salix.ejournal.api.entities.SchoolClass;
-import ru.salix.ejournal.api.entities.Subject;
-import ru.salix.ejournal.api.entities.Teacher;
 import ru.salix.ejournal.api.dao.services.SchoolClassService;
 import ru.salix.ejournal.api.dao.services.SubjectService;
 import ru.salix.ejournal.api.dao.services.TeacherService;
+import ru.salix.ejournal.api.entities.Teacher;
 
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -34,34 +33,41 @@ public class TeacherControllerHandler {
     private final SchoolClassDtoBuilder schoolClassDtoBuilder;
 
     public List<TeacherDto> teachers(boolean withSubjects, boolean withClasses) {
-        List<Teacher> teachers = teacherService.findAll();
+        var teachers = teacherService.findAll();
+        return teacherDtoList(teachers, withSubjects, withClasses);
+    }
+
+    public TeacherDto teacherById(long id, boolean withSubjects, boolean withClasses) {
+        var teacher = teacherService.findById(id);
+        return teacherDto(teacher, withSubjects, withClasses);
+    }
+
+    public List<TeacherDto> filter(TeacherFilterDto filter, boolean withSubjects, boolean withClasses) {
+        var teachers = teacherService.filter(filter);
+        return teacherDtoList(teachers, withSubjects, withClasses);
+    }
+
+    private List<TeacherDto> teacherDtoList(List<Teacher> teachers, boolean withSubjects, boolean withClasses) {
         return teachers
                 .stream()
                 .map(teacher -> teacherDto(teacher, withSubjects, withClasses))
                 .collect(toList());
     }
 
-    public TeacherDto teacherById(long id, boolean withSubjects, boolean withClasses) {
-        Teacher teacher = teacherService.findById(id);
-        return teacherDto(teacher, withSubjects, withClasses);
-    }
-
-    public List<TeacherDto> filter(TeacherFilterDto filter, boolean withSubjects, boolean withClasses) {
-        return null;
-    }
-
     private TeacherDto teacherDto(Teacher teacher, boolean withSubjects, boolean withClasses) {
-        List<SubjectDto> subjectDtoList = null;
-        if (withSubjects) {
-            List<Subject> subjects = subjectService.findAllByTeachersIs(teacher);
-            subjectDtoList = subjectDtoBuilder.dtoList(subjects);
-        }
-        List<SchoolClassDto> schoolClassDtoList = null;
-        if (withClasses) {
-            List<SchoolClass> classes = schoolClassService.findAllByTeacher(teacher);
-            schoolClassDtoList = schoolClassDtoBuilder.dtoList(classes);
-        }
+        List<SubjectDto> subjectDtoList = withSubjects ? subjectDtoList(teacher) : emptyList();
+        List<SchoolClassDto> schoolClassDtoList = withClasses ? schoolClassDtoList(teacher) : emptyList();
         return teacherDtoBuilder.build(teacher, subjectDtoList, schoolClassDtoList);
+    }
+
+    private List<SubjectDto> subjectDtoList(Teacher teacher) {
+        var subjects = subjectService.findAllByTeachersIs(teacher);
+        return subjectDtoBuilder.dtoList(subjects);
+    }
+
+    private List<SchoolClassDto> schoolClassDtoList(Teacher teacher) {
+        var classes = schoolClassService.findAllByTeacher(teacher);
+        return schoolClassDtoBuilder.dtoList(classes);
     }
 
 }
