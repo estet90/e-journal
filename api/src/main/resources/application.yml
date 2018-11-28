@@ -20,3 +20,4 @@ spring:
 
 logging.level:
   liquibase: debug
+  org.hibernate.type.descriptor.sql.BasicBinder: trace

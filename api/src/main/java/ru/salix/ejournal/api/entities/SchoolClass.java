@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,5 +25,9 @@ public class SchoolClass extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_period")
     private Period period;
+
+    @OneToMany
+    @JoinColumn(name = "id_class")
+    private List<Timetable> timetable;
 
 }

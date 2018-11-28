@@ -1,34 +1,51 @@
 package ru.salix.ejournal.api.dao.specifications;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.controllers.dto.TeacherFilterDto;
-import ru.salix.ejournal.api.entities.Subject;
-import ru.salix.ejournal.api.entities.Teacher;
-import ru.salix.ejournal.api.entities.Teacher_;
+import ru.salix.ejournal.api.entities.*;
 
 import javax.persistence.criteria.Predicate;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
-@Component
-@RequiredArgsConstructor
+import static java.util.Optional.ofNullable;
+
 public class TeacherSpecifications {
 
     public static Specification<Teacher> filterSpecification(TeacherFilterDto filter) {
-        return (Specification<Teacher>) (root, query, criteriaBuilder) -> {
-            Predicate idPredicate = criteriaBuilder.equal(root.get(Teacher_.id), filter.getId());
-            Predicate namePredicate = criteriaBuilder.equal(root.get(Teacher_.name), filter.getName());
-            Predicate surnamePredicate = criteriaBuilder.equal(root.get(Teacher_.surname), filter.getSurname());
-            Predicate descriptionPredicate = criteriaBuilder.equal(root.get(Teacher_.description), filter.getDescription());
-            Predicate subjectPredicate = criteriaBuilder.equal(root.get(Teacher_.subjects), filter.getSubject());
-            Predicate relatedClassNamePredicate = criteriaBuilder.equal(root.get(Teacher_.classes), filter.getRelatedClassName());
-            root.fetch(Teacher_.subjects);
-            return root.in(idPredicate, namePredicate, surnamePredicate, descriptionPredicate, subjectPredicate, relatedClassNamePredicate);
+        return (root, query, builder) -> {
+            var subjectJoinOptional = ofNullable(filter.getSubject()).map(value -> root.join(Teacher_.subjects));
+            var ownClassJoinOptional = ofNullable(filter.getOwnClassName()).map(value -> root.join(Teacher_.classes));
+            var relatedClassJoinOptional = ofNullable(filter.getRelatedClassName())
+                    .map(value -> root.join(Teacher_.timetables).join(Timetable_.schoolClass));
+            var conditions = builder
+                    .and(Stream
+                            .of(
+                                    predicate(filter.getId(), id -> builder.equal(root.get(Teacher_.id), id)),
+                                    predicate(filter.getName(), name -> builder.equal(root.get(Teacher_.name), name)),
+                                    predicate(filter.getSurname(), surname -> builder.equal(root.get(Teacher_.surname), surname)),
+                                    predicate(filter.getPatronymic(), patronymic -> builder.equal(root.get(Teacher_.patronymic), patronymic)),
+                                    predicate(filter.getDescription(), description -> builder.equal(root.get(Teacher_.description), description)),
+                                    predicate(subjectJoinOptional.orElse(null), join -> builder.equal(join.get(Subject_.name), filter.getSubject())),
+                                    predicate(ownClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.number),
+                                            Integer.valueOf(filter.getOwnClassName().split(" ")[0]))),
+                                    predicate(ownClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.liter),
+                                            filter.getOwnClassName().split(" ")[1].charAt(0))),
+                                    predicate(relatedClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.number),
+                                            Integer.valueOf(filter.getRelatedClassName().split(" ")[0]))),
+                                    predicate(relatedClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.liter),
+                                            filter.getRelatedClassName().split(" ")[1].charAt(0)))
+                            )
+                            .filter(Objects::nonNull)
+                            .toArray(Predicate[]::new)
+                    );
+            return query.where(conditions).getGroupRestriction();
         };
     }
 
-    private static Specification<Subject> subjectsByTeacher(Long idTeacher) {
-        return (Specification<Subject>) (root, query, criteriaBuilder) -> null;
+    private static <T> Predicate predicate(T value, Function<T, Predicate> function) {
+        return ofNullable(value).map(function).orElse(null);
     }
 
 }

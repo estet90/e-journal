@@ -47,9 +47,9 @@ dependencies {
 
 sourceSets.main.java.srcDirs = [
         "src/main/java",
-        "src/main/generated"
+        "out/production/classes/generated"
 ]
 
 jpaModelgen {
-    jpaModelgenSourcesDir = "src/main/generated"
+    jpaModelgenSourcesDir = "out/production/classes/generated"
 }
