@@ -29,13 +29,13 @@ public class TeacherSpecifications {
                                     predicate(filter.getDescription(), description -> builder.equal(root.get(Teacher_.description), description)),
                                     predicate(subjectJoinOptional.orElse(null), join -> builder.equal(join.get(Subject_.name), filter.getSubject())),
                                     predicate(ownClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.number),
-                                            Integer.valueOf(filter.getOwnClassName().split(" ")[0]))),
+                                            number(filter.getOwnClassName()))),
                                     predicate(ownClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.liter),
-                                            filter.getOwnClassName().split(" ")[1].charAt(0))),
+                                            liter(filter.getOwnClassName()))),
                                     predicate(relatedClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.number),
-                                            Integer.valueOf(filter.getRelatedClassName().split(" ")[0]))),
+                                            number(filter.getRelatedClassName()))),
                                     predicate(relatedClassJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.liter),
-                                            filter.getRelatedClassName().split(" ")[1].charAt(0)))
+                                            liter(filter.getRelatedClassName())))
                             )
                             .filter(Objects::nonNull)
                             .toArray(Predicate[]::new)
@@ -46,6 +46,14 @@ public class TeacherSpecifications {
 
     private static <T> Predicate predicate(T value, Function<T, Predicate> function) {
         return ofNullable(value).map(function).orElse(null);
+    }
+
+    private static char liter(String fullClassName) {
+        return fullClassName.split(" ")[1].charAt(0);
+    }
+
+    private static int number(String fullClassName) {
+        return Integer.valueOf(fullClassName.split(" ")[0]);
     }
 
 }
