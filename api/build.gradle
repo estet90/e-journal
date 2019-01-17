@@ -2,47 +2,59 @@ group "ru.salix.ejournal"
 version "0.1.3"
 
 buildscript {
-    ext {
-        springBootVersion = "2.1.0.RELEASE"
-    }
+    def springBootVersion = "2.1.1.RELEASE"
     repositories {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath(
-                "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
-        )
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     }
 }
 
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 
-ext {
-    postgresqlVersion = "42.2.5"
-    jaxbApiVersion = "2.3.1"
+def postgresqlVersion = "42.2.5"
+def jaxbApiVersion = "2.3.1"
+def mapstructVersion = "1.2.0.Final"
+def springFoxSwaggerVersion = "2.9.2"
+def commonsIoVersion = "2.6"
+
+configurations {
+    implementation {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+        exclude group: "ch.qos.logback", module: "logback-classic"
+    }
 }
 
 dependencies {
     implementation project(":db")
+    implementation project(":error-lib")
 
     implementation(
             "org.springframework.boot:spring-boot-starter-web",
             "org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.springframework.boot:spring-boot-starter-log4j2",
 
             "org.postgresql:postgresql:$postgresqlVersion",
+
+            "io.springfox:springfox-swagger2:$springFoxSwaggerVersion",
+            "io.springfox:springfox-swagger-ui:$springFoxSwaggerVersion",
 
             "org.liquibase:liquibase-core",
 
             "org.projectlombok:lombok",
-            "org.hibernate:hibernate-jpamodelgen"
+            "org.hibernate:hibernate-jpamodelgen",
+            "org.mapstruct:mapstruct:$mapstructVersion",
+            "commons-io:commons-io:$commonsIoVersion"
     )
     annotationProcessor(
             "javax.xml.bind:jaxb-api:$jaxbApiVersion",
             "org.projectlombok:lombok",
-            "org.hibernate:hibernate-jpamodelgen"
+            "org.hibernate:hibernate-jpamodelgen",
+            "org.mapstruct:mapstruct-processor:$mapstructVersion"
     )
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -50,15 +62,14 @@ dependencies {
 
 compileJava {
     def relativePath = "out/production/classes/generated"
-    sourceSets.main.java { 
-        srcDir(relativePath) 
+    sourceSets.main.java {
+        srcDir(relativePath)
     }
     def generatedSourceDir = project.file(relativePath)
     println "Creating and configuring generated source directory $generatedSourceDir"
     project.mkdir(generatedSourceDir)
     options.annotationProcessorGeneratedSourcesDirectory = generatedSourceDir
     outputs.dir(generatedSourceDir)
-
     doFirst {
         project.delete(generatedSourceDir)
         project.mkdir(generatedSourceDir)
@@ -72,7 +83,7 @@ compileJava {
 //            if (maybeJar.file) {
 //                println "Doing: " + maybeJar.name
 //                zipTree(maybeJar).matching {
-//                    include 'META-INF/services/javax.annotation.processing.Processor'
+//                    include 'META-INF/service/javax.annotation.processing.Processor'
 //                } each {
 //                    processorConfigFile ->
 //                        println "Annotation processor(s) found in $maybeJar.name:"

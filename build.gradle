@@ -11,12 +11,17 @@ subprojects {
         }
     }
 
+    def jaxbApiVersion = "2.3.1"
+    def jaxbCoreVersion = "2.3.0.1"
+    def jaxbImplVersion = "2.3.1"
+    def activationVersion = "1.1.1"
+
     dependencies {
         implementation(
-                "javax.xml.bind:jaxb-api:2.3.1",
-                "com.sun.xml.bind:jaxb-core:2.3.0.1",
-                "com.sun.xml.bind:jaxb-impl:2.3.1",
-                "javax.activation:activation:1.1.1"
+                "javax.xml.bind:jaxb-api:$jaxbApiVersion",
+                "com.sun.xml.bind:jaxb-core:$jaxbCoreVersion",
+                "com.sun.xml.bind:jaxb-impl:$jaxbImplVersion",
+                "javax.activation:activation:$activationVersion"
         )
     }
 }

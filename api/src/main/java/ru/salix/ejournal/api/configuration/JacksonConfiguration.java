@@ -13,7 +13,7 @@ public class JacksonConfiguration {
 
     @Bean
     ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
+        var objectMapper = new ObjectMapper();
         objectMapper.setVisibility(FIELD, ANY);
         objectMapper.setDefaultPropertyInclusion(NON_NULL);
         return objectMapper;
