@@ -2,6 +2,7 @@ package ru.salix.ejournal.api.dao.specification;
 
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.controller.dto.SubjectFilterDto;
 import ru.salix.ejournal.api.entity.*;
 
@@ -15,10 +16,10 @@ import java.util.stream.Stream;
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 
-@NoArgsConstructor
+@Component
 public class SubjectSpecifications {
 
-    public static Specification<Subject> filterSpecification(SubjectFilterDto filter) {
+    public Specification<Subject> filterSpecification(SubjectFilterDto filter) {
         return (Specification<Subject>) (root, query, builder) -> {
             var teacherJoin = teacherJoin(filter, root);
             var classJoinOptional = classJoinOptional(filter, root);
@@ -36,7 +37,7 @@ public class SubjectSpecifications {
         };
     }
 
-    private static ListJoin<Subject, Teacher> teacherJoin(SubjectFilterDto filter, Root<Subject> root) {
+    private ListJoin<Subject, Teacher> teacherJoin(SubjectFilterDto filter, Root<Subject> root) {
         return Stream
                 .of(
                         filter.getTeacherName(),
@@ -49,7 +50,7 @@ public class SubjectSpecifications {
                 .orElse(null);
     }
 
-    private static Optional<Join<Timetable, SchoolClass>> classJoinOptional(SubjectFilterDto filter, Root<Subject> root) {
+    private Optional<Join<Timetable, SchoolClass>> classJoinOptional(SubjectFilterDto filter, Root<Subject> root) {
         return ofNullable(filter.getClassName())
                 .map(value -> root.join(Subject_.teachers)
                         .join(Teacher_.timetables)

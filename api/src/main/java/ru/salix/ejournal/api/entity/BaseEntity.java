@@ -18,6 +18,6 @@ public class BaseEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    protected long id;
+    protected Long id;
 
 }

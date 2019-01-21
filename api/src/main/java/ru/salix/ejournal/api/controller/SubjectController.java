@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static ru.salix.ejournal.api.error.operation.ModuleOperationCode.*;
-import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationCode;
+import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationName;
 
 @RestController
 @RequestMapping("/subjects")
@@ -22,14 +22,14 @@ public class SubjectController {
 
     @GetMapping
     public ResponseEntity<List<SubjectDto>> findSubjects() {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.findSubjects()), SUBJECTS_FIND);
+        return fillOperationName(() -> ResponseEntity.ok(handler.findSubjects()), SUBJECTS_FIND);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SubjectDto> subjectById(
             @PathVariable("id") Long id
     ) {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.findSubjectById(id)), SUBJECTS_FIND_BY_ID);
+        return fillOperationName(() -> ResponseEntity.ok(handler.findSubjectById(id)), SUBJECTS_FIND_BY_ID);
     }
 
     @GetMapping("/filter")
@@ -49,14 +49,29 @@ public class SubjectController {
                 .teacherPatronymic(teacherPatronymic)
                 .className(className)
                 .build();
-        return fillOperationCode(() -> ResponseEntity.ok(handler.filter(filter)), SUBJECTS_FILTER);
+        return fillOperationName(() -> ResponseEntity.ok(handler.filter(filter)), SUBJECTS_FILTER);
     }
 
     @PostMapping
     public ResponseEntity<Long> createSubject(
             @RequestBody SubjectDto subjectDto
     ) {
-        return fillOperationCode(() -> new ResponseEntity<>(handler.createSubject(subjectDto), CREATED), SUBJECTS_FILTER);
+        return fillOperationName(() -> new ResponseEntity<>(handler.createSubject(subjectDto), CREATED), SUBJECTS_CREATE);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Long> updateSubject(
+            @PathVariable(value = "id") Long id,
+            @RequestBody SubjectDto subjectDto
+    ) {
+        return fillOperationName(() -> ResponseEntity.accepted().body(handler.updateSubject(subjectDto, id)), SUBJECTS_UPDATE);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteSubject(
+            @PathVariable(value = "id") Long id
+    ) {
+        return fillOperationName(() -> ResponseEntity.accepted().body(handler.deleteSubject(id)), SUBJECTS_DELETE);
     }
 
 }

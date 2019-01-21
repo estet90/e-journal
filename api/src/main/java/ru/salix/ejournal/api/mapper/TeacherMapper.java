@@ -16,4 +16,6 @@ public interface TeacherMapper {
     })
     Teacher teacherDtoToTeacher(TeacherDto teacherDto);
 
+    TeacherDto teacherToTeacherDto(Teacher teacher);
+
 }

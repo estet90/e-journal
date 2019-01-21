@@ -11,4 +11,6 @@ public interface SubjectMapper {
     @Mapping(target = "teachers", ignore = true)
     Subject subjectDtoToSubject(SubjectDto subjectDto);
 
+    SubjectDto subjectToSubjectDto(Subject subject);
+
 }

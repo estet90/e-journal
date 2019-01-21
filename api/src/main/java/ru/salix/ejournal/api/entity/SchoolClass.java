@@ -28,6 +28,6 @@ public class SchoolClass extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "id_class")
-    private List<Timetable> timetable;
+    private List<Timetable> timetables;
 
 }

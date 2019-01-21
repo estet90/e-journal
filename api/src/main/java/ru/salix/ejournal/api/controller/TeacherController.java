@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static ru.salix.ejournal.api.error.operation.ModuleOperationCode.*;
-import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationCode;
+import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationName;
 
 @RestController
 @RequestMapping("/teachers")
@@ -24,14 +24,14 @@ public class TeacherController {
 
     @GetMapping
     public ResponseEntity<List<TeacherDto>> findTeachers() {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.findTeachers()), TEACHERS_FIND);
+        return fillOperationName(() -> ResponseEntity.ok(handler.findTeachers()), TEACHERS_FIND);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TeacherDto> findTeacherById(
             @PathVariable("id") long id
     ) {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.findTeacherById(id)), TEACHERS_FIND_BY_ID);
+        return fillOperationName(() -> ResponseEntity.ok(handler.findTeacherById(id)), TEACHERS_FIND_BY_ID);
     }
 
     @GetMapping("/filter")
@@ -55,14 +55,14 @@ public class TeacherController {
                 .relatedClassName(relatedClassName)
                 .ownClassName(ownClassName)
                 .build();
-        return fillOperationCode(() -> ResponseEntity.ok(handler.filter(filter)), TEACHERS_FILTER);
+        return fillOperationName(() -> ResponseEntity.ok(handler.filter(filter)), TEACHERS_FILTER);
     }
 
     @PostMapping
     public ResponseEntity<Long> createTeacher(
             @RequestBody TeacherDto teacherDto
     ) {
-        return fillOperationCode(() -> new ResponseEntity<>(handler.createTeacher(teacherDto), CREATED), TEACHERS_CREATE);
+        return fillOperationName(() -> new ResponseEntity<>(handler.createTeacher(teacherDto), CREATED), TEACHERS_CREATE);
     }
 
     @PutMapping("/{id}")
@@ -70,21 +70,21 @@ public class TeacherController {
             @PathVariable(value = "id") Long id,
             @RequestBody TeacherDto teacherDto
     ) {
-        return fillOperationCode(() -> ResponseEntity.accepted().body(handler.updateTeacher(teacherDto, id)), TEACHERS_UPDATE);
+        return fillOperationName(() -> ResponseEntity.accepted().body(handler.updateTeacher(teacherDto, id)), TEACHERS_UPDATE);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteTeacher(
             @PathVariable(value = "id") Long id
     ) {
-        return fillOperationCode(() -> ResponseEntity.accepted().body(handler.deleteTeacher(id)), TEACHERS_DELETE);
+        return fillOperationName(() -> ResponseEntity.accepted().body(handler.deleteTeacher(id)), TEACHERS_DELETE);
     }
 
     @GetMapping("/{id}/subjects")
     public ResponseEntity<List<SubjectDto>> findSubjectsByTeacherId(
             @PathVariable(value = "id") Long id
     ) {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.subjectsByTeacherId(id)), TEACHERS_SUBJECTS_FIND);
+        return fillOperationName(() -> ResponseEntity.ok(handler.subjectsByTeacherId(id)), TEACHERS_SUBJECTS_FIND);
     }
 
     @PostMapping("/{idTeacher}/subjects/{idSubject}")
@@ -92,7 +92,7 @@ public class TeacherController {
             @PathVariable(value = "idTeacher") Long idTeacher,
             @PathVariable(value = "idSubject") Long idSubject
     ) {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.addSubjectToTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
+        return fillOperationName(() -> ResponseEntity.ok(handler.addSubjectToTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
     }
 
     @DeleteMapping("/{idTeacher}/subjects/{idSubject}")
@@ -100,14 +100,14 @@ public class TeacherController {
             @PathVariable(value = "idTeacher") Long idTeacher,
             @PathVariable(value = "idSubject") Long idSubject
     ) {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.deleteSubjectFromTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
+        return fillOperationName(() -> ResponseEntity.ok(handler.deleteSubjectFromTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
     }
 
     @GetMapping("/{id}/classes")
     public ResponseEntity<List<SchoolClassDto>> findClassesByTeacherId(
             @PathVariable(value = "id") Long id
     ) {
-        return fillOperationCode(() -> ResponseEntity.ok(handler.classesByTeacherId(id)), TEACHERS_CLASSES);
+        return fillOperationName(() -> ResponseEntity.ok(handler.classesByTeacherId(id)), TEACHERS_CLASSES);
     }
 
 }

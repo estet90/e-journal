@@ -1,5 +1,5 @@
 group "ru.salix.ejournal"
-version "0.1.3"
+version "0.1.5"
 
 buildscript {
     def springBootVersion = "2.1.1.RELEASE"
@@ -73,6 +73,14 @@ compileJava {
     doFirst {
         project.delete(generatedSourceDir)
         project.mkdir(generatedSourceDir)
+    }
+}
+
+clean {
+    def relativePath = "out/production/"
+    def generatedSourceDir = project.file(relativePath)
+    doFirst {
+        project.delete(generatedSourceDir)
     }
 }
 

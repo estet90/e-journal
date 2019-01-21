@@ -1,5 +1,6 @@
 package ru.salix.ejournal.api.dao.service;
 
+import org.springframework.data.jpa.domain.Specification;
 import ru.salix.ejournal.api.dao.repository.BaseRepository;
 import ru.salix.ejournal.api.entity.BaseEntity;
 
@@ -17,8 +18,12 @@ public class BaseService<E extends BaseEntity, T extends BaseRepository<E>> {
         this.repository = repository;
     }
 
-    public E save(E entity) {
+    E save(E entity) {
         return execute(() -> repository.save(entity), DB_EXCEPTION);
+    }
+
+    public Long saveAndReturnId(E entity) {
+        return save(entity).getId();
     }
 
     public List<E> saveAll(List<E> entities) {
@@ -35,6 +40,10 @@ public class BaseService<E extends BaseEntity, T extends BaseRepository<E>> {
 
     public List<E> findAll() {
         return execute((Supplier<List<E>>) repository::findAll, DB_EXCEPTION);
+    }
+
+    public List<E> filter(Specification<E> specification) {
+        return execute(() -> repository.findAll(specification), DB_EXCEPTION);
     }
 
     public void delete(E entity) {

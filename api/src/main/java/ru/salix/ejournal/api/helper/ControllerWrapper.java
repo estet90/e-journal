@@ -12,7 +12,7 @@ import static ru.salix.ejournal.api.constant.ThreadContextField.OPERATION_NAME;
 @NoArgsConstructor(access = PRIVATE)
 public class ControllerWrapper {
 
-    public static <T> T fillOperationCode(Supplier<T> action, ModuleOperationCode operationCode) {
+    public static <T> T fillOperationName(Supplier<T> action, ModuleOperationCode operationCode) {
         ThreadContext.put(OPERATION_NAME, operationCode.getName());
         return action.get();
     }

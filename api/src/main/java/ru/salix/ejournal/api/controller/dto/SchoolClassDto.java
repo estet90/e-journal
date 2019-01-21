@@ -1,16 +1,20 @@
 package ru.salix.ejournal.api.controller.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Builder
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SchoolClassDto {
 
-    private long id;
+    private Long id;
     private int number;
     private char liter;
     private TeacherDto teacher;
     private PeriodDto period;
-
+    //TODO: timetables
 }

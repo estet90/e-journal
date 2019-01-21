@@ -9,9 +9,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubjectDto {
+public class PupilDto {
 
     private Long id;
+    private SchoolClassDto schoolClass;
     private String name;
+    private String surname;
+    private String patronymic;
+    private String description;
 
 }

@@ -1,18 +1,17 @@
 package ru.salix.ejournal.api.dao.specification;
 
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.controller.dto.TeacherFilterDto;
 import ru.salix.ejournal.api.entity.*;
 
 import static java.util.Optional.ofNullable;
-import static lombok.AccessLevel.PRIVATE;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 
-@NoArgsConstructor(access = PRIVATE)
+@Component
 public class TeacherSpecifications {
 
-    public static Specification<Teacher> filterSpecification(TeacherFilterDto filter) {
+    public Specification<Teacher> filterSpecification(TeacherFilterDto filter) {
         return (root, query, builder) -> {
             var subjectJoinOptional = ofNullable(filter.getSubject()).map(value -> root.join(Teacher_.subjects));
             var ownClassJoinOptional = ofNullable(filter.getOwnClassName()).map(value -> root.join(Teacher_.classes));

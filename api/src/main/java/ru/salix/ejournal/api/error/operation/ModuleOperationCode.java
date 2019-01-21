@@ -28,7 +28,17 @@ public enum ModuleOperationCode implements OperationCode {
 
     SUBJECTS_FIND("0201", "subjectsFind"),
     SUBJECTS_FIND_BY_ID("0202", "subjectsFindById"),
-    SUBJECTS_FILTER("0203", "subjectsFilter");
+    SUBJECTS_FILTER("0203", "subjectsFilter"),
+    SUBJECTS_CREATE("0204", "subjectsCreate"),
+    SUBJECTS_UPDATE("0205", "subjectsUpdate"),
+    SUBJECTS_DELETE("0206", "subjectsDelete"),
+
+    PUPILS_FIND("0301", "pupilsFind"),
+    PUPILS_FIND_BY_ID("0301", "pupilsFindById"),
+    PUPILS_FILTER("0303", "pupilsFilter"),
+    PUPILS_CREATE("0304", "pupilsCreate"),
+    PUPILS_UPDATE("0305", "pupilsUpdate"),
+    PUPILS_DELETE("0306", "pupilsDelete");
 
     private final String code;
     private final String name;

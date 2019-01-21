@@ -1,4 +1,4 @@
-package ru.salix.ejournal.api.controller.builder;
+package ru.salix.ejournal.api.builder.dto;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

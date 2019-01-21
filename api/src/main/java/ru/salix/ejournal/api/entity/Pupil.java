@@ -26,4 +26,5 @@ public class Pupil extends BaseEntity {
 
     @Column(name = "description")
     private String description;
+
 }

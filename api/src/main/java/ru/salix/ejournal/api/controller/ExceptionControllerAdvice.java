@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import ru.salix.ejournal.api.controller.builder.ErrorHttpDtoBuilder;
+import ru.salix.ejournal.api.builder.dto.ErrorHttpDtoBuilder;
 import ru.salix.ejournal.api.controller.dto.ErrorHttpDto;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
