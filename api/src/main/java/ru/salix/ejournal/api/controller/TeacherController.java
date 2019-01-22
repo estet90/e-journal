@@ -92,7 +92,7 @@ public class TeacherController {
             @PathVariable(value = "idTeacher") Long idTeacher,
             @PathVariable(value = "idSubject") Long idSubject
     ) {
-        return fillOperationName(() -> ResponseEntity.ok(handler.addSubjectToTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
+        return fillOperationName(() -> ResponseEntity.accepted().body(handler.addSubjectToTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
     }
 
     @DeleteMapping("/{idTeacher}/subjects/{idSubject}")
@@ -100,7 +100,7 @@ public class TeacherController {
             @PathVariable(value = "idTeacher") Long idTeacher,
             @PathVariable(value = "idSubject") Long idSubject
     ) {
-        return fillOperationName(() -> ResponseEntity.ok(handler.deleteSubjectFromTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
+        return fillOperationName(() -> ResponseEntity.accepted().body(handler.deleteSubjectFromTeacher(idTeacher, idSubject)), TEACHERS_SUBJECTS_FIND);
     }
 
     @GetMapping("/{id}/classes")

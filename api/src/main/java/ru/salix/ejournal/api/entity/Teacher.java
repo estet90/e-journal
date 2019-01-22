@@ -37,4 +37,5 @@ public class Teacher extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "id_teacher")
     private List<Timetable> timetables;
+
 }
