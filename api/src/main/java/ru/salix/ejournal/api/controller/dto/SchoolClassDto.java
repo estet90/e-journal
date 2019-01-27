@@ -5,16 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchoolClassDto {
+public class SchoolClassDto extends BaseDtoEntity {
 
-    private Long id;
     private int number;
     private char liter;
     private TeacherDto teacher;
     private PeriodDto period;
-    //TODO: timetables
+    private List<TimetableDto> timetables;
+
 }

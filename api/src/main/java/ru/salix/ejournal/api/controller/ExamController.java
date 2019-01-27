@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.salix.ejournal.api.controller.dto.ExamDto;
-import ru.salix.ejournal.api.controller.dto.ExamFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.ExamFilterDto;
 import ru.salix.ejournal.api.controller.handler.ExamControllerHandler;
 
 import java.time.LocalDateTime;

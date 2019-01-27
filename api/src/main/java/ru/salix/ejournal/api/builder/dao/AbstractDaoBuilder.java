@@ -1,12 +1,13 @@
 package ru.salix.ejournal.api.builder.dao;
 
+import ru.salix.ejournal.api.controller.dto.BaseDtoEntity;
 import ru.salix.ejournal.api.entity.BaseEntity;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public abstract class AbstractDaoBuilder<T extends BaseEntity, V> {
+public abstract class AbstractDaoBuilder<T extends BaseEntity, V extends BaseDtoEntity> {
 
     /**
      * метод предназначен для сборки соответствующей сущности без внешних связей
@@ -35,7 +36,7 @@ public abstract class AbstractDaoBuilder<T extends BaseEntity, V> {
      * может использоваться при обновлении
      *
      * @param dtoEntity DTO
-     * @param id идентификатор
+     * @param id        идентификатор
      * @return T DAO
      */
     public T build(V dtoEntity, Long id) {

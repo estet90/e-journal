@@ -17,4 +17,9 @@ public class TeacherDtoBuilder extends AbstractDtoBuilder<TeacherDto, Teacher> {
         return teacherMapper.teacherToTeacherDto(teacher);
     }
 
+    @Override
+    public TeacherDto buildWithRelatedObjects(Teacher entity) {
+        return null;
+    }
+
 }

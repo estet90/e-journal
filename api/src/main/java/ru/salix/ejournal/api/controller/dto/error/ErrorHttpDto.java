@@ -1,4 +1,4 @@
-package ru.salix.ejournal.api.controller.dto;
+package ru.salix.ejournal.api.controller.dto.error;
 
 import lombok.Builder;
 import org.springframework.http.HttpStatus;

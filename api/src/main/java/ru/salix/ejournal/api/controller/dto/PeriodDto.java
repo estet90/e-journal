@@ -1,9 +1,20 @@
 package ru.salix.ejournal.api.controller.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Builder
+import java.time.LocalDate;
+
 @Getter
-public class PeriodDto {
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PeriodDto extends BaseDtoEntity {
+
+    private PeriodTypeDto periodType;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
+
 }

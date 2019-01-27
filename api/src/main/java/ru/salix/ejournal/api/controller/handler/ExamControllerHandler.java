@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.builder.dao.ExamBuilder;
 import ru.salix.ejournal.api.builder.dto.ExamDtoBuilder;
 import ru.salix.ejournal.api.controller.dto.ExamDto;
-import ru.salix.ejournal.api.controller.dto.ExamFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.ExamFilterDto;
 import ru.salix.ejournal.api.controller.dto.SchoolClassDto;
 import ru.salix.ejournal.api.controller.dto.SubjectDto;
 import ru.salix.ejournal.api.dao.service.ExamService;

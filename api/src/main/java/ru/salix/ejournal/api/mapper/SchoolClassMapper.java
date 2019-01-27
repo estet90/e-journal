@@ -12,14 +12,14 @@ public interface SchoolClassMapper {
     @Mappings({
             @Mapping(target = "teacher", ignore = true),
             @Mapping(target = "period", ignore = true),
-            @Mapping(target = "timetables", ignore = true),
+            @Mapping(target = "timetables", ignore = true)
     })
     SchoolClass schoolClassDtoToSchoolClass(SchoolClassDto schoolClassDto);
 
     @Mappings({
             @Mapping(target = "teacher", ignore = true),
-            @Mapping(target = "period", ignore = true)
-            //TODO: timetables
+            @Mapping(target = "period", ignore = true),
+            @Mapping(target = "timetables", ignore = true)
     })
     SchoolClassDto schoolClassToSchoolClassDto(SchoolClass schoolClass);
 

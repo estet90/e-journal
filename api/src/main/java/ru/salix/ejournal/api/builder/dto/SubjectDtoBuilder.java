@@ -17,4 +17,9 @@ public class SubjectDtoBuilder extends AbstractDtoBuilder<SubjectDto, Subject> {
         return subjectMapper.subjectToSubjectDto(subject);
     }
 
+    @Override
+    public SubjectDto buildWithRelatedObjects(Subject entity) {
+        return null;
+    }
+
 }

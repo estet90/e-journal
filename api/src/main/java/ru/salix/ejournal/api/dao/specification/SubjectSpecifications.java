@@ -1,9 +1,8 @@
 package ru.salix.ejournal.api.dao.specification;
 
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.SubjectFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.SubjectFilterDto;
 import ru.salix.ejournal.api.entity.*;
 
 import javax.persistence.criteria.Join;

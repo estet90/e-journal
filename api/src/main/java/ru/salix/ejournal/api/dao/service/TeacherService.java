@@ -1,7 +1,7 @@
 package ru.salix.ejournal.api.dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.salix.ejournal.api.controller.dto.TeacherFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.TeacherFilterDto;
 import ru.salix.ejournal.api.dao.repository.TeacherRepository;
 import ru.salix.ejournal.api.dao.specification.TeacherSpecifications;
 import ru.salix.ejournal.api.entity.Teacher;

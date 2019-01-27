@@ -12,4 +12,9 @@ public class SchoolClassDtoBuilder extends AbstractDtoBuilder<SchoolClassDto, Sc
         return null;
     }
 
+    @Override
+    public SchoolClassDto buildWithRelatedObjects(SchoolClass entity) {
+        return null;
+    }
+
 }

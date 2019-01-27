@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubjectDto {
+public class SubjectDto extends BaseDtoEntity {
 
-    private Long id;
     private String name;
 
 }

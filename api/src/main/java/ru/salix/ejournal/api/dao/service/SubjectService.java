@@ -1,7 +1,7 @@
 package ru.salix.ejournal.api.dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.salix.ejournal.api.controller.dto.SubjectFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.SubjectFilterDto;
 import ru.salix.ejournal.api.dao.repository.SubjectRepository;
 import ru.salix.ejournal.api.dao.specification.SubjectSpecifications;
 import ru.salix.ejournal.api.entity.Subject;

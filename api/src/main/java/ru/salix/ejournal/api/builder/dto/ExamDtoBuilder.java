@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.controller.dto.ExamDto;
 import ru.salix.ejournal.api.entity.Exam;
-import ru.salix.ejournal.api.entity.SchoolClass;
-import ru.salix.ejournal.api.entity.Subject;
 import ru.salix.ejournal.api.mapper.ExamMapper;
 
 @Component
@@ -21,10 +19,11 @@ public class ExamDtoBuilder extends AbstractDtoBuilder<ExamDto, Exam> {
         return examMapper.examToExamDto(exam);
     }
 
-    public ExamDto build(Exam exam, SchoolClass schoolClass, Subject subject) {
+    @Override
+    public ExamDto buildWithRelatedObjects(Exam exam) {
         var examDto = build(exam);
-        examDto.setSchoolClass(schoolClassDtoBuilder.build(schoolClass));
-        examDto.setSubject(subjectDtoBuilder.build(subject));
+        examDto.setSchoolClass(schoolClassDtoBuilder.build(exam.getSchoolClass()));
+        examDto.setSubject(subjectDtoBuilder.build(exam.getSubject()));
         return examDto;
     }
 

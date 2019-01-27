@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.builder.dao.PupilBuilder;
 import ru.salix.ejournal.api.builder.dto.PupilDtoBuilder;
 import ru.salix.ejournal.api.controller.dto.PupilDto;
-import ru.salix.ejournal.api.controller.dto.PupilFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.PupilFilterDto;
 import ru.salix.ejournal.api.dao.service.PupilService;
 import ru.salix.ejournal.api.entity.Pupil;
 

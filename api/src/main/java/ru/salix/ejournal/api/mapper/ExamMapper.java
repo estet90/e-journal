@@ -11,13 +11,13 @@ public interface ExamMapper {
 
     @Mappings({
             @Mapping(target = "subject", ignore = true),
-            @Mapping(target = "schoolClass", ignore = true),
+            @Mapping(target = "schoolClass", ignore = true)
     })
     Exam examDtoToExam(ExamDto examDto);
 
     @Mappings({
             @Mapping(target = "subject", ignore = true),
-            @Mapping(target = "schoolClass", ignore = true),
+            @Mapping(target = "schoolClass", ignore = true)
     })
     ExamDto examToExamDto(Exam exam);
 

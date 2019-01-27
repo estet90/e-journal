@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import ru.salix.ejournal.api.builder.dto.ErrorHttpDtoBuilder;
-import ru.salix.ejournal.api.controller.dto.ErrorHttpDto;
+import ru.salix.ejournal.api.builder.dto.error.ErrorHttpDtoBuilder;
+import ru.salix.ejournal.api.controller.dto.error.ErrorHttpDto;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;

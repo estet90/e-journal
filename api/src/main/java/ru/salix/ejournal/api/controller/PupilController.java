@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.salix.ejournal.api.controller.dto.PupilDto;
-import ru.salix.ejournal.api.controller.dto.PupilFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.PupilFilterDto;
 import ru.salix.ejournal.api.controller.handler.PupilControllerHandler;
 
 import java.util.List;

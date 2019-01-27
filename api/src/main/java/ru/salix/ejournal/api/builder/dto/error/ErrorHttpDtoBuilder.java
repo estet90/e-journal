@@ -1,9 +1,9 @@
-package ru.salix.ejournal.api.builder.dto;
+package ru.salix.ejournal.api.builder.dto.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
-import ru.salix.ejournal.api.controller.dto.ErrorHttpDto;
+import ru.salix.ejournal.api.controller.dto.error.ErrorHttpDto;
 import ru.salix.ejournal.error.exception.BaseException;
 
 import java.util.ArrayList;

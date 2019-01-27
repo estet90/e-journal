@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.salix.ejournal.api.controller.dto.SchoolClassDto;
 import ru.salix.ejournal.api.controller.dto.SubjectDto;
 import ru.salix.ejournal.api.controller.dto.TeacherDto;
-import ru.salix.ejournal.api.controller.dto.TeacherFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.TeacherFilterDto;
 import ru.salix.ejournal.api.controller.handler.TeacherControllerHandler;
 
 import java.util.List;

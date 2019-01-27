@@ -9,7 +9,7 @@ import ru.salix.ejournal.api.builder.dto.TeacherDtoBuilder;
 import ru.salix.ejournal.api.controller.dto.SchoolClassDto;
 import ru.salix.ejournal.api.controller.dto.SubjectDto;
 import ru.salix.ejournal.api.controller.dto.TeacherDto;
-import ru.salix.ejournal.api.controller.dto.TeacherFilterDto;
+import ru.salix.ejournal.api.controller.dto.filter.TeacherFilterDto;
 import ru.salix.ejournal.api.dao.service.SchoolClassService;
 import ru.salix.ejournal.api.dao.service.SubjectService;
 import ru.salix.ejournal.api.dao.service.SubjectTeacherService;

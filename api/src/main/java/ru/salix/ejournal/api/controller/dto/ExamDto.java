@@ -11,9 +11,8 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExamDto {
+public class ExamDto extends BaseDtoEntity{
 
-    private Long id;
     private LocalDateTime datetime;
     private SubjectDto subject;
     private SchoolClassDto schoolClass;

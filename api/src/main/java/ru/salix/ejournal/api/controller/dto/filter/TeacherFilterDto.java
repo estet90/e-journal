@@ -1,4 +1,4 @@
-package ru.salix.ejournal.api.controller.dto;
+package ru.salix.ejournal.api.controller.dto.filter;
 
 import lombok.Builder;
 import lombok.Getter;

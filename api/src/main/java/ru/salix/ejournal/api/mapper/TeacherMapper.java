@@ -16,6 +16,11 @@ public interface TeacherMapper {
     })
     Teacher teacherDtoToTeacher(TeacherDto teacherDto);
 
+    @Mappings({
+            @Mapping(target = "classes", ignore = true),
+            @Mapping(target = "subjects", ignore = true),
+            @Mapping(target = "timetables", ignore = true),
+    })
     TeacherDto teacherToTeacherDto(Teacher teacher);
 
 }
