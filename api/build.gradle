@@ -21,6 +21,7 @@ def jaxbApiVersion = "2.3.1"
 def mapstructVersion = "1.2.0.Final"
 def springFoxSwaggerVersion = "2.9.2"
 def commonsIoVersion = "2.6"
+def logbookVersion = "1.12.1"
 
 configurations {
     implementation {
@@ -37,6 +38,7 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-web",
             "org.springframework.boot:spring-boot-starter-data-jpa",
             "org.springframework.boot:spring-boot-starter-log4j2",
+            "org.zalando:logbook-spring-boot-starter:$logbookVersion",
 
             "org.postgresql:postgresql:$postgresqlVersion",
 
