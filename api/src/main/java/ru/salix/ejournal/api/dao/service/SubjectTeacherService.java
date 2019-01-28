@@ -1,10 +1,10 @@
 package ru.salix.ejournal.api.dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.salix.ejournal.api.entity.Subject;
-import ru.salix.ejournal.api.entity.SubjectTeacher;
+import ru.salix.ejournal.api.model.dao.Subject;
+import ru.salix.ejournal.api.model.dao.SubjectTeacher;
 import ru.salix.ejournal.api.dao.repository.SubjectTeacherRepository;
-import ru.salix.ejournal.api.entity.Teacher;
+import ru.salix.ejournal.api.model.dao.Teacher;
 
 @Service
 public class SubjectTeacherService extends BaseService<SubjectTeacher, SubjectTeacherRepository> {

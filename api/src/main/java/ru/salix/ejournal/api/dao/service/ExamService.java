@@ -1,9 +1,9 @@
 package ru.salix.ejournal.api.dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.salix.ejournal.api.controller.dto.filter.ExamFilterDto;
+import ru.salix.ejournal.api.model.api.filter.ExamFilterDto;
 import ru.salix.ejournal.api.dao.specification.ExamSpecifications;
-import ru.salix.ejournal.api.entity.Exam;
+import ru.salix.ejournal.api.model.dao.Exam;
 import ru.salix.ejournal.api.dao.repository.ExamRepository;
 
 import java.util.List;

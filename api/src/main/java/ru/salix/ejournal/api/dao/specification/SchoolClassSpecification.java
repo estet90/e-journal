@@ -1,0 +1,57 @@
+package ru.salix.ejournal.api.dao.specification;
+
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
+import ru.salix.ejournal.api.model.api.filter.SchoolClassFilterDto;
+import ru.salix.ejournal.api.model.dao.*;
+
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.ListJoin;
+import javax.persistence.criteria.Root;
+
+import static java.util.Optional.ofNullable;
+import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
+
+@Component
+public class SchoolClassSpecification {
+
+    public Specification<SchoolClass> filterSpecification(SchoolClassFilterDto filter) {
+        return (Specification<SchoolClass>) (root, query, builder) -> {
+            var teacherJoin = teacherJoin(filter, root);
+            var pupilJoin = pupilJoin(filter, root);
+            var subjectJoin = ofNullable(filter.getSubjectName())
+                    .map(value -> root.join(SchoolClass_.timetables).join(Timetable_.subject));
+            var conditions = expression(
+                    builder,
+                    predicate(filter.getId(), id -> builder.equal(root.get(SchoolClass_.id), id)),
+                    predicate(filter.getName(), join -> builder.equal(root.get(SchoolClass_.liter), liter(filter.getName()))),
+                    predicate(filter.getName(), join -> builder.equal(root.get(SchoolClass_.number), number(filter.getName()))),
+                    predicate(filter.getTeacherName(), name -> builder.equal(teacherJoin.get(Teacher_.name), name)),
+                    predicate(filter.getTeacherSurname(), surname -> builder.equal(teacherJoin.get(Teacher_.surname), surname)),
+                    predicate(filter.getTeacherPatronymic(), patronymic -> builder.equal(teacherJoin.get(Teacher_.patronymic), patronymic)),
+                    predicate(filter.getPupilName(), name -> builder.equal(pupilJoin.get(Pupil_.name), name)),
+                    predicate(filter.getPupilSurname(), surname -> builder.equal(pupilJoin.get(Pupil_.surname), surname)),
+                    predicate(filter.getPupilPatronymic(), patronymic -> builder.equal(pupilJoin.get(Pupil_.patronymic), patronymic)),
+                    predicate(subjectJoin.orElse(null), join -> builder.equal(join.get(Subject_.name), filter.getSubjectName()))
+            );
+            return query.where(conditions).getGroupRestriction();
+        };
+    }
+
+    private Join<SchoolClass, Teacher> teacherJoin(SchoolClassFilterDto filter, Root<SchoolClass> root) {
+        return join(root, SchoolClass_.teacher,
+                filter.getTeacherName(),
+                filter.getTeacherSurname(),
+                filter.getTeacherPatronymic()
+        );
+    }
+
+    private ListJoin<SchoolClass, Pupil> pupilJoin(SchoolClassFilterDto filter, Root<SchoolClass> root) {
+        return listJoin(root, SchoolClass_.pupils,
+                filter.getPupilName(),
+                filter.getPupilSurname(),
+                filter.getPupilPatronymic()
+        );
+    }
+
+}

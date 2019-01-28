@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.dao.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.filter.TeacherFilterDto;
-import ru.salix.ejournal.api.entity.*;
+import ru.salix.ejournal.api.model.api.filter.TeacherFilterDto;
+import ru.salix.ejournal.api.model.dao.*;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;

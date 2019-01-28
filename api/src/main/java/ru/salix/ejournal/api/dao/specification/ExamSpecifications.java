@@ -2,8 +2,11 @@ package ru.salix.ejournal.api.dao.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.filter.ExamFilterDto;
-import ru.salix.ejournal.api.entity.*;
+import ru.salix.ejournal.api.model.api.filter.ExamFilterDto;
+import ru.salix.ejournal.api.model.dao.Exam;
+import ru.salix.ejournal.api.model.dao.Exam_;
+import ru.salix.ejournal.api.model.dao.SchoolClass_;
+import ru.salix.ejournal.api.model.dao.Subject_;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;

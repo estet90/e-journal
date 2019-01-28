@@ -3,8 +3,8 @@ package ru.salix.ejournal.api.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import ru.salix.ejournal.api.controller.dto.ExamDto;
-import ru.salix.ejournal.api.entity.Exam;
+import ru.salix.ejournal.api.model.api.ExamDto;
+import ru.salix.ejournal.api.model.dao.Exam;
 
 @Mapper(componentModel = "spring")
 public interface ExamMapper {

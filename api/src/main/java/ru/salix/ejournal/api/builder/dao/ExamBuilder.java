@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.builder.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.ExamDto;
-import ru.salix.ejournal.api.entity.Exam;
+import ru.salix.ejournal.api.model.api.ExamDto;
+import ru.salix.ejournal.api.model.dao.Exam;
 import ru.salix.ejournal.api.mapper.ExamMapper;
 
 @Component

@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.builder.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.LessonPeriodDto;
-import ru.salix.ejournal.api.entity.LessonPeriod;
+import ru.salix.ejournal.api.model.api.LessonPeriodDto;
+import ru.salix.ejournal.api.model.dao.LessonPeriod;
 import ru.salix.ejournal.api.mapper.LessonPeriodMapper;
 
 @Component

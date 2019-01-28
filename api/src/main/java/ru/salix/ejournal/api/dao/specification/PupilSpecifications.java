@@ -2,14 +2,13 @@ package ru.salix.ejournal.api.dao.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.filter.PupilFilterDto;
-import ru.salix.ejournal.api.entity.Pupil;
-import ru.salix.ejournal.api.entity.Pupil_;
-import ru.salix.ejournal.api.entity.SchoolClass_;
+import ru.salix.ejournal.api.model.api.filter.PupilFilterDto;
+import ru.salix.ejournal.api.model.dao.Pupil;
+import ru.salix.ejournal.api.model.dao.Pupil_;
+import ru.salix.ejournal.api.model.dao.SchoolClass_;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
-import static ru.salix.ejournal.api.helper.SpecificationHelper.number;
 
 @Component
 public class PupilSpecifications {

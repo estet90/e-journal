@@ -3,8 +3,8 @@ package ru.salix.ejournal.api.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import ru.salix.ejournal.api.controller.dto.PeriodMarkDto;
-import ru.salix.ejournal.api.entity.PeriodMark;
+import ru.salix.ejournal.api.model.api.PeriodMarkDto;
+import ru.salix.ejournal.api.model.dao.PeriodMark;
 
 @Mapper(componentModel = "spring")
 public interface PeriodMarkMapper {

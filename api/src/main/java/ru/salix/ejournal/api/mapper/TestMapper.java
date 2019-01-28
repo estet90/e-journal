@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.salix.ejournal.api.controller.dto.TestDto;
-import ru.salix.ejournal.api.entity.Test;
+import ru.salix.ejournal.api.model.api.TestDto;
+import ru.salix.ejournal.api.model.dao.Test;
 
 @Mapper(componentModel = "spring")
 public interface TestMapper {

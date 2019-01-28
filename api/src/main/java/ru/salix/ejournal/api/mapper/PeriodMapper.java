@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.salix.ejournal.api.controller.dto.PeriodDto;
-import ru.salix.ejournal.api.entity.Period;
+import ru.salix.ejournal.api.model.api.PeriodDto;
+import ru.salix.ejournal.api.model.dao.Period;
 
 @Mapper(componentModel = "spring")
 public interface PeriodMapper {

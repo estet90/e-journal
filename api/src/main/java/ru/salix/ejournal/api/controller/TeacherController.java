@@ -3,10 +3,10 @@ package ru.salix.ejournal.api.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.salix.ejournal.api.controller.dto.SchoolClassDto;
-import ru.salix.ejournal.api.controller.dto.SubjectDto;
-import ru.salix.ejournal.api.controller.dto.TeacherDto;
-import ru.salix.ejournal.api.controller.dto.filter.TeacherFilterDto;
+import ru.salix.ejournal.api.model.api.SchoolClassDto;
+import ru.salix.ejournal.api.model.api.SubjectDto;
+import ru.salix.ejournal.api.model.api.TeacherDto;
+import ru.salix.ejournal.api.model.api.filter.TeacherFilterDto;
 import ru.salix.ejournal.api.controller.handler.TeacherControllerHandler;
 
 import java.util.List;

@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.salix.ejournal.api.controller.dto.PupilDto;
-import ru.salix.ejournal.api.entity.Pupil;
+import ru.salix.ejournal.api.model.api.PupilDto;
+import ru.salix.ejournal.api.model.dao.Pupil;
 
 @Mapper(componentModel = "spring")
 public interface PupilMapper {

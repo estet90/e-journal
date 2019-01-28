@@ -3,8 +3,8 @@ package ru.salix.ejournal.api.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import ru.salix.ejournal.api.controller.dto.TimetableDto;
-import ru.salix.ejournal.api.entity.Timetable;
+import ru.salix.ejournal.api.model.api.TimetableDto;
+import ru.salix.ejournal.api.model.dao.Timetable;
 
 @Mapper(componentModel = "spring")
 public interface TimetableMapper {

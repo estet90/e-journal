@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.salix.ejournal.api.controller.dto.MarkDto;
-import ru.salix.ejournal.api.entity.Mark;
+import ru.salix.ejournal.api.model.api.MarkDto;
+import ru.salix.ejournal.api.model.dao.Mark;
 
 @Mapper(componentModel = "spring")
 public interface MarkMapper {

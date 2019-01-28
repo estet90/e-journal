@@ -2,7 +2,7 @@ package ru.salix.ejournal.api.dao.service;
 
 import org.springframework.data.jpa.domain.Specification;
 import ru.salix.ejournal.api.dao.repository.BaseRepository;
-import ru.salix.ejournal.api.entity.BaseEntity;
+import ru.salix.ejournal.api.model.dao.BaseEntity;
 
 import java.util.List;
 import java.util.function.Supplier;

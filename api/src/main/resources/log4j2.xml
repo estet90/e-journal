@@ -12,7 +12,7 @@
             </PatternLayout>
         </Console>
         <RollingFile name="FileAppender"
-                     fileName="logs/e-journal.log"
+                     fileName="logs/e-journal-api.log"
                      filePattern="logs/e-journal-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout>
                 <Pattern>${LOG_PATTERN}</Pattern>

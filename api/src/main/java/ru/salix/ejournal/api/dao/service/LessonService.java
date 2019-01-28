@@ -1,7 +1,7 @@
 package ru.salix.ejournal.api.dao.service;
 
 import org.springframework.stereotype.Service;
-import ru.salix.ejournal.api.entity.Lesson;
+import ru.salix.ejournal.api.model.dao.Lesson;
 import ru.salix.ejournal.api.dao.repository.LessonRepository;
 
 @Service

@@ -3,11 +3,11 @@ package ru.salix.ejournal.api.controller.handler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.builder.dao.SubjectBuilder;
-import ru.salix.ejournal.api.builder.dto.SubjectDtoBuilder;
-import ru.salix.ejournal.api.controller.dto.SubjectDto;
-import ru.salix.ejournal.api.controller.dto.filter.SubjectFilterDto;
+import ru.salix.ejournal.api.builder.api.SubjectDtoBuilder;
+import ru.salix.ejournal.api.model.api.SubjectDto;
+import ru.salix.ejournal.api.model.api.filter.SubjectFilterDto;
 import ru.salix.ejournal.api.dao.service.SubjectService;
-import ru.salix.ejournal.api.entity.Subject;
+import ru.salix.ejournal.api.model.dao.Subject;
 
 import java.util.List;
 import java.util.function.Supplier;

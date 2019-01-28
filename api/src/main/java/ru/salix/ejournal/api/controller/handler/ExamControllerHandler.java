@@ -3,15 +3,15 @@ package ru.salix.ejournal.api.controller.handler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.builder.dao.ExamBuilder;
-import ru.salix.ejournal.api.builder.dto.ExamDtoBuilder;
-import ru.salix.ejournal.api.controller.dto.ExamDto;
-import ru.salix.ejournal.api.controller.dto.filter.ExamFilterDto;
-import ru.salix.ejournal.api.controller.dto.SchoolClassDto;
-import ru.salix.ejournal.api.controller.dto.SubjectDto;
+import ru.salix.ejournal.api.builder.api.ExamDtoBuilder;
+import ru.salix.ejournal.api.model.api.ExamDto;
+import ru.salix.ejournal.api.model.api.SchoolClassDto;
+import ru.salix.ejournal.api.model.api.SubjectDto;
+import ru.salix.ejournal.api.model.api.filter.ExamFilterDto;
 import ru.salix.ejournal.api.dao.service.ExamService;
 import ru.salix.ejournal.api.dao.service.SchoolClassService;
 import ru.salix.ejournal.api.dao.service.SubjectService;
-import ru.salix.ejournal.api.entity.Exam;
+import ru.salix.ejournal.api.model.dao.Exam;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -33,7 +33,7 @@ public class ExamControllerHandler {
     private final SchoolClassService schoolClassService;
 
     public List<ExamDto> findExams() {
-        return wrap(() -> examDtoList(examService::findAll));
+        return wrap(() -> examDtoBuilder.buildList(examService::findAll));
     }
 
     public ExamDto findExamById(Long id) {
@@ -41,7 +41,7 @@ public class ExamControllerHandler {
     }
 
     public List<ExamDto> filter(ExamFilterDto filter) {
-        return wrap(() -> examDtoList(() -> examService.filter(filter)));
+        return wrap(() -> examDtoBuilder.buildList(() -> examService.filter(filter)));
     }
 
     public Long createExam(ExamDto examDto) {
@@ -73,10 +73,6 @@ public class ExamControllerHandler {
                     .orElseThrow(() -> notFoundInDbException("Предмет не найден"));
             return examService.saveAndReturnId(builder.get());
         });
-    }
-
-    private List<ExamDto> examDtoList(Supplier<List<Exam>> supplier) {
-        return wrap(() -> examDtoBuilder.buildList(supplier.get()));
     }
 
 }

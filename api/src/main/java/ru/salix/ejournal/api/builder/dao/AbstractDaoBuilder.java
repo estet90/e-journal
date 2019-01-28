@@ -1,7 +1,7 @@
 package ru.salix.ejournal.api.builder.dao;
 
-import ru.salix.ejournal.api.controller.dto.BaseDtoEntity;
-import ru.salix.ejournal.api.entity.BaseEntity;
+import ru.salix.ejournal.api.model.api.BaseDtoEntity;
+import ru.salix.ejournal.api.model.dao.BaseEntity;
 
 import java.util.List;
 

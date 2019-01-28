@@ -45,7 +45,14 @@ public enum ModuleOperationCode implements OperationCode {
     EXAMS_FILTER("0403", "examsFilter"),
     EXAMS_CREATE("0404", "examsCreate"),
     EXAMS_UPDATE("0405", "examsUpdate"),
-    EXAMS_DELETE("0406", "examsDelete");
+    EXAMS_DELETE("0406", "examsDelete"),
+
+    CLASSES_FIND("0501", "classesFind"),
+    CLASSES_FIND_BY_ID("0501", "classesFindById"),
+    CLASSES_FILTER("0503", "classesFilter"),
+    CLASSES_CREATE("0504", "classesCreate"),
+    CLASSES_UPDATE("0505", "classesUpdate"),
+    CLASSES_DELETE("0506", "classesDelete");
 
     private final String code;
     private final String name;

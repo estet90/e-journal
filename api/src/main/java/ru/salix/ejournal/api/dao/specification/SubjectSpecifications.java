@@ -2,15 +2,13 @@ package ru.salix.ejournal.api.dao.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.filter.SubjectFilterDto;
-import ru.salix.ejournal.api.entity.*;
+import ru.salix.ejournal.api.model.api.filter.SubjectFilterDto;
+import ru.salix.ejournal.api.model.dao.*;
 
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Root;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
@@ -37,16 +35,11 @@ public class SubjectSpecifications {
     }
 
     private ListJoin<Subject, Teacher> teacherJoin(SubjectFilterDto filter, Root<Subject> root) {
-        return Stream
-                .of(
-                        filter.getTeacherName(),
-                        filter.getTeacherSurname(),
-                        filter.getTeacherPatronymic()
-                )
-                .filter(Objects::nonNull)
-                .findAny()
-                .map(value -> root.join(Subject_.teachers))
-                .orElse(null);
+        return listJoin(root, Subject_.teachers,
+                filter.getTeacherName(),
+                filter.getTeacherSurname(),
+                filter.getTeacherPatronymic()
+        );
     }
 
     private Optional<Join<Timetable, SchoolClass>> classJoinOptional(SubjectFilterDto filter, Root<Subject> root) {

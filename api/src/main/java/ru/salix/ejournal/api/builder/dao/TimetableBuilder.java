@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.builder.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.TimetableDto;
-import ru.salix.ejournal.api.entity.Timetable;
+import ru.salix.ejournal.api.model.api.TimetableDto;
+import ru.salix.ejournal.api.model.dao.Timetable;
 import ru.salix.ejournal.api.mapper.TimetableMapper;
 
 @Component

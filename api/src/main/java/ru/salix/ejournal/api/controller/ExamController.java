@@ -3,8 +3,8 @@ package ru.salix.ejournal.api.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.salix.ejournal.api.controller.dto.ExamDto;
-import ru.salix.ejournal.api.controller.dto.filter.ExamFilterDto;
+import ru.salix.ejournal.api.model.api.ExamDto;
+import ru.salix.ejournal.api.model.api.filter.ExamFilterDto;
 import ru.salix.ejournal.api.controller.handler.ExamControllerHandler;
 
 import java.time.LocalDateTime;

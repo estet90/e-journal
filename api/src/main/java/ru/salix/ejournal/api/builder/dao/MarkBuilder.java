@@ -2,8 +2,8 @@ package ru.salix.ejournal.api.builder.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.controller.dto.MarkDto;
-import ru.salix.ejournal.api.entity.Mark;
+import ru.salix.ejournal.api.model.api.MarkDto;
+import ru.salix.ejournal.api.model.dao.Mark;
 import ru.salix.ejournal.api.mapper.MarkMapper;
 
 @Component
