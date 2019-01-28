@@ -52,7 +52,9 @@ public enum ModuleOperationCode implements OperationCode {
     CLASSES_FILTER("0503", "classesFilter"),
     CLASSES_CREATE("0504", "classesCreate"),
     CLASSES_UPDATE("0505", "classesUpdate"),
-    CLASSES_DELETE("0506", "classesDelete");
+    CLASSES_DELETE("0506", "classesDelete"),
+    CLASSES_PUPILS_ADD("0507", "classesPupilsAdd"),
+    CLASSES_PUPILS_DELETE("0508", "classesPupilsDelete");
 
     private final String code;
     private final String name;

@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.zalando.logbook.DefaultHttpLogFormatter;
 import org.zalando.logbook.Logbook;
 
+import static org.zalando.logbook.Conditions.exclude;
+import static org.zalando.logbook.Conditions.requestTo;
+
 @Configuration
 public class LogbookConfiguration {
 
@@ -17,6 +20,9 @@ public class LogbookConfiguration {
         return Logbook.builder()
                 .formatter(new DefaultHttpLogFormatter())
                 .writer(new EJournalHttpLogWriter(logger))
+                .condition(exclude(
+                        requestTo("/api/v1/swagger-ui.html#/**")
+                ))
                 .build();
     }
 

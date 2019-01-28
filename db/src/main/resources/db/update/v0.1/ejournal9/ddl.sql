@@ -1,0 +1,1 @@
+ALTER TABLE ejournal.pupil ALTER COLUMN id_class DROP NOT NULL;

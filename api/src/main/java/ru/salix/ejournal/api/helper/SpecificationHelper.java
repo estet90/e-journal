@@ -29,7 +29,7 @@ public class SpecificationHelper {
     }
 
     /**
-     * извлеxение литера из названия класса
+     * извлечение литера из названия класса
      *
      * @param fullClassName название класса
      * @return литер

@@ -10,7 +10,8 @@ import ru.salix.ejournal.error.exception.InvocationException;
 public enum InvocationExceptionCode implements ExceptionCode<InvocationException> {
 
     DB_EXCEPTION("01"),
-    NOT_FOUND_IN_DB_EXCEPTION("02");
+    NOT_FOUND_IN_DB_EXCEPTION("02"),
+    ALREADY_EXISTS_IN_DB_EXCEPTION("03");
 
     private final String code;
 

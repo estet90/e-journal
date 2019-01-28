@@ -2,24 +2,23 @@ package ru.salix.ejournal.api.controller.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.salix.ejournal.api.builder.dao.TeacherBuilder;
 import ru.salix.ejournal.api.builder.api.SchoolClassDtoBuilder;
 import ru.salix.ejournal.api.builder.api.SubjectDtoBuilder;
 import ru.salix.ejournal.api.builder.api.TeacherDtoBuilder;
-import ru.salix.ejournal.api.model.api.SchoolClassDto;
-import ru.salix.ejournal.api.model.api.SubjectDto;
-import ru.salix.ejournal.api.model.api.TeacherDto;
-import ru.salix.ejournal.api.model.api.filter.TeacherFilterDto;
+import ru.salix.ejournal.api.builder.dao.TeacherBuilder;
 import ru.salix.ejournal.api.dao.service.SchoolClassService;
 import ru.salix.ejournal.api.dao.service.SubjectService;
 import ru.salix.ejournal.api.dao.service.SubjectTeacherService;
 import ru.salix.ejournal.api.dao.service.TeacherService;
+import ru.salix.ejournal.api.model.api.SchoolClassDto;
+import ru.salix.ejournal.api.model.api.SubjectDto;
+import ru.salix.ejournal.api.model.api.TeacherDto;
+import ru.salix.ejournal.api.model.api.filter.TeacherFilterDto;
 import ru.salix.ejournal.api.model.dao.Subject;
 import ru.salix.ejournal.api.model.dao.Teacher;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.ExceptionHelper.notFoundInDbException;
@@ -42,7 +41,7 @@ public class TeacherControllerHandler {
     private final SubjectTeacherService subjectTeacherService;
 
     public List<TeacherDto> findTeachers() {
-        return teacherDtoList(teacherService::findAll);
+        return teacherDtoBuilder.buildList(teacherService::findAll);
     }
 
     public TeacherDto findTeacherById(long id) {
@@ -53,7 +52,7 @@ public class TeacherControllerHandler {
     }
 
     public List<TeacherDto> filter(TeacherFilterDto filter) {
-        return teacherDtoList(() -> teacherService.filter(filter));
+        return teacherDtoBuilder.buildList(() -> teacherService.filter(filter));
     }
 
     public Long createTeacher(TeacherDto teacherDto) {
@@ -102,10 +101,6 @@ public class TeacherControllerHandler {
         var subject = ofNullable(subjectService.findById(idSubject))
                 .orElseThrow(() -> notFoundInDbException(String.format("Не найден предмет по id = %s", idSubject)));
         return Map.entry(teacher, subject);
-    }
-
-    private List<TeacherDto> teacherDtoList(Supplier<List<Teacher>> supplier) {
-        return wrap(() -> teacherDtoBuilder.buildList(supplier.get()));
     }
 
 }

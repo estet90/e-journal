@@ -1,8 +1,8 @@
 group "ru.salix.ejournal"
-version "0.1.5"
+version "0.1.6"
 
 buildscript {
-    def springBootVersion = "2.1.1.RELEASE"
+    def springBootVersion = "2.1.2.RELEASE"
     repositories {
         maven {
             url "https://plugins.gradle.org/m2/"

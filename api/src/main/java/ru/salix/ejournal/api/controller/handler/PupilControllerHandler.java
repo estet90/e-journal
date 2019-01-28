@@ -2,15 +2,13 @@ package ru.salix.ejournal.api.controller.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.builder.dao.PupilBuilder;
 import ru.salix.ejournal.api.builder.api.PupilDtoBuilder;
+import ru.salix.ejournal.api.builder.dao.PupilBuilder;
+import ru.salix.ejournal.api.dao.service.PupilService;
 import ru.salix.ejournal.api.model.api.PupilDto;
 import ru.salix.ejournal.api.model.api.filter.PupilFilterDto;
-import ru.salix.ejournal.api.dao.service.PupilService;
-import ru.salix.ejournal.api.model.dao.Pupil;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.ExceptionHelper.notFoundInDbException;
@@ -25,7 +23,7 @@ public class PupilControllerHandler {
     private final PupilBuilder pupilBuilder;
 
     public List<PupilDto> findPupils() {
-        return dtoList(pupilService::findAll);
+        return wrap(() -> pupilDtoBuilder.buildList(pupilService::findAll));
     }
 
     public PupilDto findPupilById(Long id) {
@@ -36,7 +34,7 @@ public class PupilControllerHandler {
     }
 
     public List<PupilDto> filter(PupilFilterDto filter) {
-        return dtoList(() -> pupilService.filter(filter));
+        return wrap(() -> pupilDtoBuilder.buildList(() -> pupilService.filter(filter)));
     }
 
     public Long createPupil(PupilDto pupilDto) {
@@ -54,10 +52,6 @@ public class PupilControllerHandler {
             pupilService.deleteById(id);
             return 1L;
         });
-    }
-
-    private List<PupilDto> dtoList(Supplier<List<Pupil>> supplier) {
-        return wrap(() -> pupilDtoBuilder.buildList(supplier.get()));
     }
 
 }

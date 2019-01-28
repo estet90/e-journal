@@ -18,7 +18,7 @@ public class BaseService<E extends BaseEntity, T extends BaseRepository<E>> {
         this.repository = repository;
     }
 
-    E save(E entity) {
+    public E save(E entity) {
         return execute(() -> repository.save(entity), DB_EXCEPTION);
     }
 

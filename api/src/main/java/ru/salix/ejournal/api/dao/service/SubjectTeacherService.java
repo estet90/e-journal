@@ -20,7 +20,7 @@ public class SubjectTeacherService extends BaseService<SubjectTeacher, SubjectTe
         save(subjectTeacher);
     }
 
-    public long delete(Teacher teacher, Subject subject) {
+    public Long delete(Teacher teacher, Subject subject) {
         return repository.deleteSubjectTeacherByTeacherAndSubject(teacher, subject);
     }
 
