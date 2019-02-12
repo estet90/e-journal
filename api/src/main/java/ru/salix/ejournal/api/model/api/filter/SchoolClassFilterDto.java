@@ -15,6 +15,6 @@ public class SchoolClassFilterDto {
     private String teacherName;
     private String teacherSurname;
     private String teacherPatronymic;
-    private String subjectName;
+    private String subject;
 
 }

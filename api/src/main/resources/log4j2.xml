@@ -13,7 +13,7 @@
         </Console>
         <RollingFile name="FileAppender"
                      fileName="logs/e-journal-api.log"
-                     filePattern="logs/e-journal-%d{yyyy-MM-dd}-%i.log">
+                     filePattern="logs/e-journal-api-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout>
                 <Pattern>${LOG_PATTERN}</Pattern>
             </PatternLayout>
@@ -29,17 +29,5 @@
             <AppenderRef ref="FileAppender"/>
             <AppenderRef ref="ConsoleAppender"/>
         </Root>
-        <Logger name="ru.salix.ejournal" level="debug" additivity="false">
-            <AppenderRef ref="FileAppender"/>
-            <AppenderRef ref="ConsoleAppender"/>
-        </Logger>
-        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
-            <AppenderRef ref="FileAppender"/>
-            <AppenderRef ref="ConsoleAppender"/>
-        </Logger>
-        <Logger name="liquibase" level="debug" additivity="false">
-            <AppenderRef ref="FileAppender"/>
-            <AppenderRef ref="ConsoleAppender"/>
-        </Logger>
     </Loggers>
 </Configuration>

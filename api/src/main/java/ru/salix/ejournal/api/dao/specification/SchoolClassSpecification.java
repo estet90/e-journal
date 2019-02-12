@@ -19,8 +19,9 @@ public class SchoolClassSpecification {
         return (Specification<SchoolClass>) (root, query, builder) -> {
             var teacherJoin = teacherJoin(filter, root);
             var pupilJoin = pupilJoin(filter, root);
-            var subjectJoin = ofNullable(filter.getSubjectName())
-                    .map(value -> root.join(SchoolClass_.timetables).join(Timetable_.subject));
+            var subjectJoin = ofNullable(filter.getSubject())
+                    .map(value -> root.join(SchoolClass_.timetables).join(Timetable_.subject))
+                    .orElse(null);
             var conditions = expression(
                     builder,
                     predicate(filter.getId(), id -> builder.equal(root.get(SchoolClass_.id), id)),
@@ -32,14 +33,15 @@ public class SchoolClassSpecification {
                     predicate(filter.getPupilName(), name -> builder.equal(pupilJoin.get(Pupil_.name), name)),
                     predicate(filter.getPupilSurname(), surname -> builder.equal(pupilJoin.get(Pupil_.surname), surname)),
                     predicate(filter.getPupilPatronymic(), patronymic -> builder.equal(pupilJoin.get(Pupil_.patronymic), patronymic)),
-                    predicate(subjectJoin.orElse(null), join -> builder.equal(join.get(Subject_.name), filter.getSubjectName()))
+                    predicate(subjectJoin, join -> builder.equal(join.get(Subject_.name), filter.getSubject()))
             );
             return query.where(conditions).getGroupRestriction();
         };
     }
 
     private Join<SchoolClass, Teacher> teacherJoin(SchoolClassFilterDto filter, Root<SchoolClass> root) {
-        return join(root, SchoolClass_.teacher,
+        return join(
+                () -> root.join(SchoolClass_.teacher),
                 filter.getTeacherName(),
                 filter.getTeacherSurname(),
                 filter.getTeacherPatronymic()
@@ -47,7 +49,8 @@ public class SchoolClassSpecification {
     }
 
     private ListJoin<SchoolClass, Pupil> pupilJoin(SchoolClassFilterDto filter, Root<SchoolClass> root) {
-        return listJoin(root, SchoolClass_.pupils,
+        return listJoin(
+                () -> root.join(SchoolClass_.pupils),
                 filter.getPupilName(),
                 filter.getPupilSurname(),
                 filter.getPupilPatronymic()

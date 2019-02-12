@@ -15,7 +15,7 @@ import java.time.LocalTime;
 public class LessonPeriod extends BaseEntity {
 
     @Column(name = "number")
-    private int number;
+    private Integer number;
 
     @Column(name = "time_start")
     private LocalTime timeStart;
@@ -24,6 +24,6 @@ public class LessonPeriod extends BaseEntity {
     private LocalTime timeEnd;
 
     @Column(name = "shift")
-    private int shift;
+    private Integer shift;
 
 }

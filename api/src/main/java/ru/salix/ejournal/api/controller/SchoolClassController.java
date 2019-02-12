@@ -42,7 +42,7 @@ public class SchoolClassController {
             @RequestParam(name = "pupilName", required = false) String pupilName,
             @RequestParam(name = "pupilSurname", required = false) String pupilSurname,
             @RequestParam(name = "pupilPatronymic", required = false) String pupilPatronymic,
-            @RequestParam(name = "subjectName", required = false) String subjectName
+            @RequestParam(name = "subject", required = false) String subject
     ) {
         return fillOperationName(() -> {
             var filter = SchoolClassFilterDto.builder()
@@ -54,7 +54,7 @@ public class SchoolClassController {
                     .pupilName(pupilName)
                     .pupilSurname(pupilSurname)
                     .pupilPatronymic(pupilPatronymic)
-                    .subjectName(subjectName)
+                    .subject(subject)
                     .build();
             return ResponseEntity.ok(handler.filter(filter));
         }, CLASSES_FILTER);

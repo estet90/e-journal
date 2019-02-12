@@ -1,27 +1,20 @@
-group "ru.salix.ejournal"
-version "0.1.6"
-
-buildscript {
-    def springBootVersion = "2.1.2.RELEASE"
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    }
+plugins {
+    id "java"
+    id "org.springframework.boot" version "2.1.2.RELEASE"
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
 }
 
-apply plugin: "org.springframework.boot"
-apply plugin: "io.spring.dependency-management"
+group "ru.salix.ejournal"
+version "0.1.7"
 
-def postgresqlVersion = "42.2.5"
-def jaxbApiVersion = "2.3.1"
-def mapstructVersion = "1.2.0.Final"
-def springFoxSwaggerVersion = "2.9.2"
-def commonsIoVersion = "2.6"
-def logbookVersion = "1.12.1"
+ext {
+    postgresqlVersion = "42.2.5"
+    jaxbApiVersion = "2.3.1"
+    mapstructVersion = "1.2.0.Final"
+    springFoxSwaggerVersion = "2.9.2"
+    commonsIoVersion = "2.6"
+    logbookVersion = "1.12.1"
+}
 
 configurations {
     implementation {

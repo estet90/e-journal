@@ -21,7 +21,13 @@ public class LogbookConfiguration {
                 .formatter(new DefaultHttpLogFormatter())
                 .writer(new EJournalHttpLogWriter(logger))
                 .condition(exclude(
-                        requestTo("/api/v1/swagger-ui.html#/**")
+                        requestTo("**/swagger-ui.html"),
+                        requestTo("**/webjars/**"),
+                        requestTo("**/csrf"),
+                        requestTo("**/swagger-resources/**"),
+                        requestTo("**/api/v1/"),
+                        requestTo("**/api-docs"),
+                        requestTo("**/api/v1/error")
                 ))
                 .build();
     }

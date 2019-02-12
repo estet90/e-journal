@@ -54,7 +54,14 @@ public enum ModuleOperationCode implements OperationCode {
     CLASSES_UPDATE("0505", "classesUpdate"),
     CLASSES_DELETE("0506", "classesDelete"),
     CLASSES_PUPILS_ADD("0507", "classesPupilsAdd"),
-    CLASSES_PUPILS_DELETE("0508", "classesPupilsDelete");
+    CLASSES_PUPILS_DELETE("0508", "classesPupilsDelete"),
+
+    TIMETABLES_FIND("0601", "timetablesFind"),
+    TIMETABLES_FIND_BY_ID("0601", "timetablesFindById"),
+    TIMETABLES_FILTER("0603", "timetablesFilter"),
+    TIMETABLES_CREATE("0604", "timetablesCreate"),
+    TIMETABLES_UPDATE("0605", "timetablesUpdate"),
+    TIMETABLES_DELETE("0606", "timetablesDelete");
 
     private final String code;
     private final String name;

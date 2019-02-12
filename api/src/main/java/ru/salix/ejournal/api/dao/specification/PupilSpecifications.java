@@ -15,7 +15,7 @@ public class PupilSpecifications {
 
     public Specification<Pupil> filterSpecification(PupilFilterDto filter) {
         return (Specification<Pupil>) (root, query, builder) -> {
-            var classJoinOptional = ofNullable(filter.getClassName()).map(value -> root.join(Pupil_.schoolClass));
+            var classJoin = ofNullable(filter.getClassName()).map(value -> root.join(Pupil_.schoolClass)).orElse(null);
             var conditions = expression(
                     builder,
                     predicate(filter.getId(), id -> builder.equal(root.get(Pupil_.id), id)),
@@ -23,8 +23,8 @@ public class PupilSpecifications {
                     predicate(filter.getSurname(), surname -> builder.equal(root.get(Pupil_.surname), surname)),
                     predicate(filter.getPatronymic(), patronymic -> builder.equal(root.get(Pupil_.patronymic), patronymic)),
                     predicate(filter.getDescription(), description -> builder.equal(root.get(Pupil_.description), description)),
-                    predicate(classJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.liter), liter(filter.getClassName()))),
-                    predicate(classJoinOptional.orElse(null), join -> builder.equal(join.get(SchoolClass_.number), number(filter.getClassName())))
+                    predicate(classJoin, join -> builder.equal(join.get(SchoolClass_.liter), liter(filter.getClassName()))),
+                    predicate(classJoin, join -> builder.equal(join.get(SchoolClass_.number), number(filter.getClassName())))
             );
             return query.where(conditions).getGroupRestriction();
         };

@@ -41,7 +41,7 @@ public class TeacherControllerHandler {
     private final SubjectTeacherService subjectTeacherService;
 
     public List<TeacherDto> findTeachers() {
-        return teacherDtoBuilder.buildList(teacherService::findAll);
+        return wrap(() -> teacherDtoBuilder.buildList(teacherService::findAll));
     }
 
     public TeacherDto findTeacherById(long id) {
@@ -52,7 +52,7 @@ public class TeacherControllerHandler {
     }
 
     public List<TeacherDto> filter(TeacherFilterDto filter) {
-        return teacherDtoBuilder.buildList(() -> teacherService.filter(filter));
+        return wrap(() -> teacherDtoBuilder.buildList(() -> teacherService.filter(filter)));
     }
 
     public Long createTeacher(TeacherDto teacherDto) {

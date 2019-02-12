@@ -16,3 +16,8 @@ spring:
     user: postgres
     password: postgres
     url: jdbc:postgresql://localhost:5432/ejournal
+
+logging.level:
+  ru.salix.ejournal: debug
+  org.hibernate.SQL: debug
+  liquibase: debug

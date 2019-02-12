@@ -29,7 +29,7 @@ public class TeacherController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TeacherDto> findTeacherById(
-            @PathVariable("id") long id
+            @PathVariable("id") Long id
     ) {
         return fillOperationName(() -> ResponseEntity.ok(handler.findTeacherById(id)), TEACHERS_FIND_BY_ID);
     }

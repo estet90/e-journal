@@ -26,14 +26,6 @@ public class BaseService<E extends BaseEntity, T extends BaseRepository<E>> {
         return save(entity).getId();
     }
 
-    public List<E> saveAll(List<E> entities) {
-        return execute(() -> repository.saveAll(entities), DB_EXCEPTION);
-    }
-
-    public E update(E entity) {
-        return execute(() -> repository.save(entity), DB_EXCEPTION);
-    }
-
     public E findById(Long id) {
         return execute(() -> repository.findById(id).orElse(null), DB_EXCEPTION);
     }
@@ -42,16 +34,13 @@ public class BaseService<E extends BaseEntity, T extends BaseRepository<E>> {
         return execute((Supplier<List<E>>) repository::findAll, DB_EXCEPTION);
     }
 
-    public List<E> filter(Specification<E> specification) {
-        return execute(() -> repository.findAll(specification), DB_EXCEPTION);
-    }
-
-    public void delete(E entity) {
-        execute(() -> repository.delete(entity), DB_EXCEPTION);
-    }
-
     public void deleteById(Long id) {
         execute(() -> repository.deleteById(id), DB_EXCEPTION);
+    }
+
+    //использовать только внутри других сервисов
+    protected List<E> filter(Specification<E> specification) {
+        return execute(() -> repository.findAll(specification), DB_EXCEPTION);
     }
 
 }
