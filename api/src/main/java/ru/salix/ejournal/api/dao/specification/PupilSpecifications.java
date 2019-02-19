@@ -14,9 +14,10 @@ import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 public class PupilSpecifications {
 
     public Specification<Pupil> filterSpecification(PupilFilterDto filter) {
-        return (Specification<Pupil>) (root, query, builder) -> {
+        return (root, query, builder) -> {
             var classJoin = ofNullable(filter.getClassName()).map(value -> root.join(Pupil_.schoolClass)).orElse(null);
-            var conditions = expression(
+            return where(
+                    query,
                     builder,
                     predicate(filter.getId(), id -> builder.equal(root.get(Pupil_.id), id)),
                     predicate(filter.getName(), name -> builder.equal(root.get(Pupil_.name), name)),
@@ -26,7 +27,6 @@ public class PupilSpecifications {
                     predicate(classJoin, join -> builder.equal(join.get(SchoolClass_.liter), liter(filter.getClassName()))),
                     predicate(classJoin, join -> builder.equal(join.get(SchoolClass_.number), number(filter.getClassName())))
             );
-            return query.where(conditions).getGroupRestriction();
         };
     }
 

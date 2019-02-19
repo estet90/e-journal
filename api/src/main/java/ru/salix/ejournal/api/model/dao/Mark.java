@@ -6,10 +6,12 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@MappedSuperclass
 public class Mark extends BaseEntity {
 
     @Column(name = "value")

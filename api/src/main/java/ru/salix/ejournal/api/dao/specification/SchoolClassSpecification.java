@@ -9,20 +9,18 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Root;
 
-import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 
 @Component
 public class SchoolClassSpecification {
 
     public Specification<SchoolClass> filterSpecification(SchoolClassFilterDto filter) {
-        return (Specification<SchoolClass>) (root, query, builder) -> {
+        return (root, query, builder) -> {
             var teacherJoin = teacherJoin(filter, root);
             var pupilJoin = pupilJoin(filter, root);
-            var subjectJoin = ofNullable(filter.getSubject())
-                    .map(value -> root.join(SchoolClass_.timetables).join(Timetable_.subject))
-                    .orElse(null);
-            var conditions = expression(
+            var subjectJoin = simpleJoin(filter.getSubject(), value -> root.join(SchoolClass_.timetables).join(Timetable_.subject));
+            return where(
+                    query,
                     builder,
                     predicate(filter.getId(), id -> builder.equal(root.get(SchoolClass_.id), id)),
                     predicate(filter.getName(), join -> builder.equal(root.get(SchoolClass_.liter), liter(filter.getName()))),
@@ -35,7 +33,6 @@ public class SchoolClassSpecification {
                     predicate(filter.getPupilPatronymic(), patronymic -> builder.equal(pupilJoin.get(Pupil_.patronymic), patronymic)),
                     predicate(subjectJoin, join -> builder.equal(join.get(Subject_.name), filter.getSubject()))
             );
-            return query.where(conditions).getGroupRestriction();
         };
     }
 

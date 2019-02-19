@@ -38,4 +38,10 @@ public class Teacher extends BaseEntity {
     @JoinColumn(name = "id_teacher")
     private List<Timetable> timetables;
 
+    @ManyToMany
+    @JoinTable(schema = "ejournal", name = "exam_teacher",
+            joinColumns = @JoinColumn(name = "id_teacher"),
+            inverseJoinColumns = @JoinColumn(name = "id_exam"))
+    private List<Exam> exams;
+
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,5 +23,11 @@ public class Exam extends BaseEntity {
 
     @Column(name = "datetime")
     private LocalDateTime datetime;
+
+    @ManyToMany
+    @JoinTable(schema = "ejournal", name = "exam_teacher",
+            joinColumns = @JoinColumn(name = "id_exam"),
+            inverseJoinColumns = @JoinColumn(name = "id_teacher"))
+    private List<Teacher> teachers;
 
 }

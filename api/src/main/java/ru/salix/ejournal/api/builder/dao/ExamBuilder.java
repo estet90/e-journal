@@ -2,9 +2,9 @@ package ru.salix.ejournal.api.builder.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.salix.ejournal.api.mapper.ExamMapper;
 import ru.salix.ejournal.api.model.api.ExamDto;
 import ru.salix.ejournal.api.model.dao.Exam;
-import ru.salix.ejournal.api.mapper.ExamMapper;
 
 @Component
 @RequiredArgsConstructor
@@ -12,23 +12,18 @@ public class ExamBuilder extends AbstractDaoBuilder<Exam, ExamDto> {
 
     private final ExamMapper examMapper;
 
-    private final SchoolClassBuilder schoolClassBuilder;
-    private final SubjectBuilder subjectBuilder;
-
     @Override
     public Exam build(ExamDto examDto) {
-        return examMapper.examDtoToExam(examDto);
+        return examMapper.fromDto(examDto);
     }
 
+    @Override
     public Exam buildWithRelatedObjects(ExamDto examDto) {
-        var exam = build(examDto);
-        exam.setSchoolClass(schoolClassBuilder.build(examDto.getSchoolClass()));
-        exam.setSubject(subjectBuilder.build(examDto.getSubject()));
-        return exam;
+        return examMapper.fromDtoWithRelatedObjects(examDto);
     }
 
     public Exam buildWithRelatedObjects(ExamDto examDto, Long id) {
-        var exam = buildWithRelatedObjects(examDto);
+        var exam = examMapper.fromDtoWithRelatedObjects(examDto);
         exam.setId(id);
         return exam;
     }

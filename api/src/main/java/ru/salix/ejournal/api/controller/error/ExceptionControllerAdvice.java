@@ -1,4 +1,4 @@
-package ru.salix.ejournal.api.controller;
+package ru.salix.ejournal.api.controller.error;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

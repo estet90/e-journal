@@ -34,21 +34,21 @@ public enum ModuleOperationCode implements OperationCode {
     SUBJECTS_DELETE("0206", "subjectsDelete"),
 
     PUPILS_FIND("0301", "pupilsFind"),
-    PUPILS_FIND_BY_ID("0301", "pupilsFindById"),
+    PUPILS_FIND_BY_ID("0302", "pupilsFindById"),
     PUPILS_FILTER("0303", "pupilsFilter"),
     PUPILS_CREATE("0304", "pupilsCreate"),
     PUPILS_UPDATE("0305", "pupilsUpdate"),
     PUPILS_DELETE("0306", "pupilsDelete"),
 
     EXAMS_FIND("0401", "examsFind"),
-    EXAMS_FIND_BY_ID("0401", "examsFindById"),
+    EXAMS_FIND_BY_ID("0402", "examsFindById"),
     EXAMS_FILTER("0403", "examsFilter"),
     EXAMS_CREATE("0404", "examsCreate"),
     EXAMS_UPDATE("0405", "examsUpdate"),
     EXAMS_DELETE("0406", "examsDelete"),
 
     CLASSES_FIND("0501", "classesFind"),
-    CLASSES_FIND_BY_ID("0501", "classesFindById"),
+    CLASSES_FIND_BY_ID("0502", "classesFindById"),
     CLASSES_FILTER("0503", "classesFilter"),
     CLASSES_CREATE("0504", "classesCreate"),
     CLASSES_UPDATE("0505", "classesUpdate"),
@@ -57,11 +57,32 @@ public enum ModuleOperationCode implements OperationCode {
     CLASSES_PUPILS_DELETE("0508", "classesPupilsDelete"),
 
     TIMETABLES_FIND("0601", "timetablesFind"),
-    TIMETABLES_FIND_BY_ID("0601", "timetablesFindById"),
+    TIMETABLES_FIND_BY_ID("0602", "timetablesFindById"),
     TIMETABLES_FILTER("0603", "timetablesFilter"),
     TIMETABLES_CREATE("0604", "timetablesCreate"),
     TIMETABLES_UPDATE("0605", "timetablesUpdate"),
-    TIMETABLES_DELETE("0606", "timetablesDelete");
+    TIMETABLES_DELETE("0606", "timetablesDelete"),
+
+    EXAM_MARKS_FIND("0701", "examMarksFind"),
+    EXAM_MARKS_FIND_BY_ID("0702", "examMarksFindById"),
+    EXAM_MARKS_FILTER("0703", "examMarksFilter"),
+    EXAM_MARKS_CREATE("0704", "examMarksCreate"),
+    EXAM_MARKS_UPDATE("0705", "examMarksUpdate"),
+    EXAM_MARKS_DELETE("0706", "examMarksDelete"),
+
+    LESSON_MARKS_FIND("0801", "lessonMarksFind"),
+    LESSON_MARKS_FIND_BY_ID("0802", "lessonMarksFindById"),
+    LESSON_MARKS_FILTER("0803", "lessonMarksFilter"),
+    LESSON_MARKS_CREATE("0804", "lessonMarksCreate"),
+    LESSON_MARKS_UPDATE("0805", "lessonMarksUpdate"),
+    LESSON_MARKS_DELETE("0806", "lessonMarksDelete"),
+
+    PERIOD_MARKS_FIND("0901", "periodMarksFind"),
+    PERIOD_MARKS_FIND_BY_ID("0902", "periodMarksFindById"),
+    PERIOD_MARKS_FILTER("0903", "periodMarksFilter"),
+    PERIOD_MARKS_CREATE("0904", "periodMarksCreate"),
+    PERIOD_MARKS_UPDATE("0905", "periodMarksUpdate"),
+    PERIOD_MARKS_DELETE("0906", "periodMarksDelete");
 
     private final String code;
     private final String name;

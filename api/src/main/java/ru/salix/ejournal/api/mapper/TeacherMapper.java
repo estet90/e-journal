@@ -13,6 +13,7 @@ public interface TeacherMapper {
             @Mapping(target = "classes", ignore = true),
             @Mapping(target = "subjects", ignore = true),
             @Mapping(target = "timetables", ignore = true),
+            @Mapping(target = "exams", ignore = true)
     })
     Teacher teacherDtoToTeacher(TeacherDto teacherDto);
 
@@ -20,6 +21,7 @@ public interface TeacherMapper {
             @Mapping(target = "classes", ignore = true),
             @Mapping(target = "subjects", ignore = true),
             @Mapping(target = "timetables", ignore = true),
+            @Mapping(target = "exams", ignore = true)
     })
     TeacherDto teacherToTeacherDto(Teacher teacher);
 

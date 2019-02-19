@@ -20,5 +20,6 @@ public class TeacherDto extends BaseDtoEntity {
     private List<SubjectDto> subjects;
     private List<SchoolClassDto> classes;
     private List<TimetableDto> timetables;
+    private List<ExamDto> exams;
 
 }

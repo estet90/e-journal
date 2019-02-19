@@ -14,5 +14,8 @@ public class ExamFilterDto {
     private LocalDateTime datetimeTo;
     private String className;
     private String subject;
+    private String teacherName;
+    private String teacherSurname;
+    private String teacherPatronymic;
 
 }

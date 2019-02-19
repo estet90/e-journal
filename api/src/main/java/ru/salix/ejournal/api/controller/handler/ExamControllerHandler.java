@@ -2,15 +2,13 @@ package ru.salix.ejournal.api.controller.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.salix.ejournal.api.builder.dao.ExamBuilder;
 import ru.salix.ejournal.api.builder.api.ExamDtoBuilder;
-import ru.salix.ejournal.api.model.api.ExamDto;
-import ru.salix.ejournal.api.model.api.SchoolClassDto;
-import ru.salix.ejournal.api.model.api.SubjectDto;
-import ru.salix.ejournal.api.model.api.filter.ExamFilterDto;
+import ru.salix.ejournal.api.builder.dao.ExamBuilder;
 import ru.salix.ejournal.api.dao.service.ExamService;
 import ru.salix.ejournal.api.dao.service.SchoolClassService;
 import ru.salix.ejournal.api.dao.service.SubjectService;
+import ru.salix.ejournal.api.model.api.ExamDto;
+import ru.salix.ejournal.api.model.api.filter.ExamFilterDto;
 import ru.salix.ejournal.api.model.dao.Exam;
 
 import java.util.List;
@@ -18,7 +16,8 @@ import java.util.function.Supplier;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.ExceptionHelper.notFoundInDbException;
-import static ru.salix.ejournal.api.helper.OperationWrapper.wrap;
+import static ru.salix.ejournal.api.helper.OperationHelper.checkField;
+import static ru.salix.ejournal.api.helper.OperationHelper.wrap;
 
 @Component
 @RequiredArgsConstructor
@@ -63,14 +62,8 @@ public class ExamControllerHandler {
 
     private Long saveAndReturnId(ExamDto examDto, Supplier<Exam> builder) {
         return wrap(() -> {
-            ofNullable(examDto.getSchoolClass())
-                    .map(SchoolClassDto::getId)
-                    .map(schoolClassService::findById)
-                    .orElseThrow(() -> notFoundInDbException("Класс не найден"));
-            ofNullable(examDto.getSubject())
-                    .map(SubjectDto::getId)
-                    .map(subjectService::findById)
-                    .orElseThrow(() -> notFoundInDbException("Предмет не найден"));
+            checkField(examDto.getSchoolClass(), schoolClassService, "Класс не найден");
+            checkField(examDto.getSubject(), subjectService, "Предмет не найден");
             return examService.saveAndReturnId(builder.get());
         });
     }

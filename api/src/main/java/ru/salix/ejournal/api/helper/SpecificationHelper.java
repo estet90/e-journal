@@ -47,8 +47,32 @@ public class SpecificationHelper {
         return Integer.valueOf(fullClassName.split(" ")[0]);
     }
 
-    public static Expression<Boolean> expression(CriteriaBuilder builder, Predicate... predicate) {
-        return builder.and(Stream.of(predicate).filter(Objects::nonNull).toArray(Predicate[]::new));
+    /**
+     * @param flag     параметр, проверяемый на null и истинность
+     * @param function формирование join
+     * @param <T>      тип связываемой сущности
+     * @param <V>      тип связанной сущности
+     * @return Join
+     */
+    public static <T, V> Join<T, V> flagJoin(Boolean flag, Function<Boolean, Join<T, V>> function) {
+        return ofNullable(flag)
+                .filter(flagValue -> flagValue)
+                .map(function)
+                .orElse(null);
+    }
+
+    /**
+     * @param parameter параметр, проверяемый на null
+     * @param function  формирование join
+     * @param <M>       тип входного параметра
+     * @param <T>       тип связываемой сущности
+     * @param <V>       тип связанной сущности
+     * @return Join
+     */
+    public static <M, T, V> Join<T, V> simpleJoin(M parameter, Function<M, Join<T, V>> function) {
+        return ofNullable(parameter)
+                .map(function)
+                .orElse(null);
     }
 
     /**
@@ -70,6 +94,8 @@ public class SpecificationHelper {
     }
 
     /**
+     * join для множественного параметра без вложенности
+     *
      * @param join   целевой метод
      * @param fields поля, которые проверяются на null перед тем, как выполнить join
      * @param <T>    тип связываемой сущности
@@ -83,6 +109,23 @@ public class SpecificationHelper {
                 .findAny()
                 .map(value -> join.get())
                 .orElse(null);
+    }
+
+    /**
+     * @param query     запрос
+     * @param builder   CriteriaBuilder
+     * @param predicate список условий
+     * @return where
+     */
+    public static Predicate where(CriteriaQuery query, CriteriaBuilder builder, Predicate... predicate) {
+        return query.where(expression(builder, predicate)).getGroupRestriction();
+    }
+
+    private static Expression<Boolean> expression(CriteriaBuilder builder, Predicate... predicate) {
+        return builder.and(Stream.of(predicate)
+                .filter(Objects::nonNull)
+                .toArray(Predicate[]::new)
+        );
     }
 
 }

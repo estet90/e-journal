@@ -34,11 +34,14 @@ public class ExamController {
     }
 
     public ResponseEntity<List<ExamDto>> filter(
-            @RequestParam("id") Long id,
-            @RequestParam("datetimeFrom") LocalDateTime datetimeFrom,
-            @RequestParam("datetimeTo") LocalDateTime datetimeTo,
-            @RequestParam("subject") String subject,
-            @RequestParam("className") String className
+            @RequestParam(name = "id", required = false) Long id,
+            @RequestParam(name = "datetimeFrom", required = false) LocalDateTime datetimeFrom,
+            @RequestParam(name = "datetimeTo", required = false) LocalDateTime datetimeTo,
+            @RequestParam(name = "subject", required = false) String subject,
+            @RequestParam(name = "className", required = false) String className,
+            @RequestParam(name = "teacherName", required = false) String teacherName,
+            @RequestParam(name = "teacherSurname", required = false) String teacherSurname,
+            @RequestParam(name = "teacherPatronymic", required = false) String teacherPatronymic
     ) {
         var filter = ExamFilterDto.builder()
                 .id(id)
@@ -46,6 +49,9 @@ public class ExamController {
                 .datetimeTo(datetimeTo)
                 .subject(subject)
                 .className(className)
+                .teacherName(teacherName)
+                .teacherSurname(teacherSurname)
+                .teacherPatronymic(teacherPatronymic)
                 .build();
         return fillOperationName(() -> ResponseEntity.ok(handler.filter(filter)), EXAMS_FILTER);
     }

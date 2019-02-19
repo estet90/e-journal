@@ -9,20 +9,20 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Root;
 
-import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 
 @Component
 public class TimetableSpecification {
 
     public Specification<Timetable> filterSpecification(TimetableFilterDto filter) {
-        return (Specification<Timetable>) (root, query, builder) -> {
+        return (root, query, builder) -> {
             var teacherJoin = teacherJoin(filter, root);
             var pupilJoin = pupilJoin(filter, root);
-            var classJoin = ofNullable(filter.getClassName()).map(value -> root.join(Timetable_.schoolClass)).orElse(null);
-            var subjectJoin = ofNullable(filter.getSubject()).map(value -> root.join(Timetable_.subject)).orElse(null);
+            var classJoin = simpleJoin(filter.getClassName(), value -> root.join(Timetable_.schoolClass));
+            var subjectJoin = simpleJoin(filter.getSubject(), value -> root.join(Timetable_.subject));
             var lessonPeriodJoin = lessonPeriodJoin(filter, root);
-            var conditions = expression(
+            return where(
+                    query,
                     builder,
                     predicate(filter.getId(), id -> builder.equal(root.get(Timetable_.id), id)),
                     predicate(classJoin, join -> builder.equal(join.get(SchoolClass_.liter), liter(filter.getClassName()))),
@@ -37,7 +37,6 @@ public class TimetableSpecification {
                     predicate(filter.getLessonPeriodNumber(), number -> builder.equal(lessonPeriodJoin.get(LessonPeriod_.number), number)),
                     predicate(filter.getLessonPeriodShift(), shift -> builder.equal(lessonPeriodJoin.get(LessonPeriod_.shift), shift))
             );
-            return query.where(conditions).getGroupRestriction();
         };
     }
 

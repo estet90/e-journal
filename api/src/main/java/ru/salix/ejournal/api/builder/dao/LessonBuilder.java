@@ -12,9 +12,18 @@ public class LessonBuilder extends AbstractDaoBuilder<Lesson, LessonDto> {
 
     private final LessonMapper lessonMapper;
 
+    private final TimetableBuilder timetableBuilder;
+
     @Override
     public Lesson build(LessonDto lessonDto) {
         return lessonMapper.lessonDtoToLesson(lessonDto);
+    }
+
+    @Override
+    public Lesson buildWithRelatedObjects(LessonDto lessonDto) {
+        var lesson = build(lessonDto);
+        lesson.setTimetable(timetableBuilder.build(lessonDto.getTimetable()));
+        return lesson;
     }
 
 }

@@ -18,8 +18,8 @@ public class LessonPeriodDtoBuilder extends AbstractDtoBuilder<LessonPeriodDto, 
     }
 
     @Override
-    public LessonPeriodDto buildWithRelatedObjects(LessonPeriod entity) {
-        return null;
+    public LessonPeriodDto buildWithRelatedObjects(LessonPeriod lessonPeriod) {
+        return build(lessonPeriod);
     }
 
 }

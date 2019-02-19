@@ -18,6 +18,14 @@ public abstract class AbstractDaoBuilder<T extends BaseEntity, V extends BaseDto
     public abstract T build(V entity);
 
     /**
+     * метод предназначен для сборки соответствующей сущности с внешними связями
+     *
+     * @param entity DTO
+     * @return T DAO
+     */
+    public abstract T buildWithRelatedObjects(V entity);
+
+    /**
      * получение списка сущностей без связей
      *
      * @param dtoEntities список DTO
@@ -40,6 +48,21 @@ public abstract class AbstractDaoBuilder<T extends BaseEntity, V extends BaseDto
      * @return T DAO
      */
     public T build(V dtoEntity, Long id) {
+        var daoEntity = build(dtoEntity);
+        daoEntity.setId(id);
+        return daoEntity;
+    }
+
+    /**
+     * метод предназначен для сборки соответствующей сущности с внешними связями
+     * идентификатор передаётся отдельно
+     * может использоваться при обновлении
+     *
+     * @param dtoEntity DTO
+     * @param id        идентификатор
+     * @return T DAO
+     */
+    public T buildWithRelatedObjects(V dtoEntity, Long id) {
         var daoEntity = build(dtoEntity);
         daoEntity.setId(id);
         return daoEntity;

@@ -3,12 +3,13 @@ package ru.salix.ejournal.api.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.salix.ejournal.api.controller.handler.TeacherControllerHandler;
 import ru.salix.ejournal.api.model.api.SchoolClassDto;
 import ru.salix.ejournal.api.model.api.SubjectDto;
 import ru.salix.ejournal.api.model.api.TeacherDto;
 import ru.salix.ejournal.api.model.api.filter.TeacherFilterDto;
-import ru.salix.ejournal.api.controller.handler.TeacherControllerHandler;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -43,7 +44,11 @@ public class TeacherController {
             @RequestParam(value = "description", required = false) String description,
             @RequestParam(value = "subject", required = false) String subject,
             @RequestParam(value = "relatedClassName", required = false) String relatedClassName,
-            @RequestParam(value = "ownClassName", required = false) String ownClassName
+            @RequestParam(value = "ownClassName", required = false) String ownClassName,
+            @RequestParam(name = "examSubject", required = false) String examSubject,
+            @RequestParam(name = "examDatetimeFrom", required = false) LocalDateTime examDatetimeFrom,
+            @RequestParam(name = "examDatetimeTo", required = false) LocalDateTime examDatetimeTo,
+            @RequestParam(name = "examClassName", required = false) String examClassName
     ) {
         var filter = TeacherFilterDto.builder()
                 .id(id)
@@ -54,6 +59,10 @@ public class TeacherController {
                 .description(description)
                 .relatedClassName(relatedClassName)
                 .ownClassName(ownClassName)
+                .examSubject(examSubject)
+                .examDatetimeFrom(examDatetimeFrom)
+                .examDatetimeTo(examDatetimeTo)
+                .examClassName(examClassName)
                 .build();
         return fillOperationName(() -> ResponseEntity.ok(handler.filter(filter)), TEACHERS_FILTER);
     }

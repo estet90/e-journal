@@ -22,7 +22,7 @@ import java.util.Map;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.ExceptionHelper.notFoundInDbException;
-import static ru.salix.ejournal.api.helper.OperationWrapper.wrap;
+import static ru.salix.ejournal.api.helper.OperationHelper.wrap;
 
 @Service
 @RequiredArgsConstructor

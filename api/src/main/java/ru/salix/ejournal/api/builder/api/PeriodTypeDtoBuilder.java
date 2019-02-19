@@ -18,8 +18,8 @@ public class PeriodTypeDtoBuilder extends AbstractDtoBuilder<PeriodTypeDto, Peri
     }
 
     @Override
-    public PeriodTypeDto buildWithRelatedObjects(PeriodType entity) {
-        return null;
+    public PeriodTypeDto buildWithRelatedObjects(PeriodType periodType) {
+        return build(periodType);
     }
 
 }

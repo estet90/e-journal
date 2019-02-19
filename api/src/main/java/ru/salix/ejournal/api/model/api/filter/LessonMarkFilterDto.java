@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Builder
 @Getter
-public class ExamMarkFilterDto {
+public class LessonMarkFilterDto {
 
     private Long id;
     private String pupilName;
@@ -20,5 +20,8 @@ public class ExamMarkFilterDto {
     private LocalDateTime datetimeTo;
     private String className;
     private String subject;
+    private Boolean testMark;
+    private Boolean homeworkMark;
+    private Boolean lessonMark;
 
 }

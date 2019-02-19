@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import ru.salix.ejournal.api.builder.api.TimetableDtoBuilder;
 import ru.salix.ejournal.api.builder.dao.TimetableBuilder;
 import ru.salix.ejournal.api.dao.service.TimetableService;
-import ru.salix.ejournal.api.model.api.TeacherDto;
 import ru.salix.ejournal.api.model.api.TimetableDto;
 import ru.salix.ejournal.api.model.api.filter.TimetableFilterDto;
 
@@ -13,7 +12,7 @@ import java.util.List;
 
 import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.ExceptionHelper.notFoundInDbException;
-import static ru.salix.ejournal.api.helper.OperationWrapper.wrap;
+import static ru.salix.ejournal.api.helper.OperationHelper.wrap;
 
 @Component
 @RequiredArgsConstructor
