@@ -19,7 +19,7 @@ public class SchoolClassBuilder extends AbstractDaoBuilder<SchoolClass, SchoolCl
 
     @Override
     public SchoolClass build(SchoolClassDto schoolClassDto) {
-        return schoolClassMapper.schoolClassDtoToSchoolClass(schoolClassDto);
+        return schoolClassMapper.fromDto(schoolClassDto);
     }
 
     @Override

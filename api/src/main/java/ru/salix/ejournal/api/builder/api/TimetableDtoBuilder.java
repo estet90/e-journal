@@ -20,7 +20,7 @@ public class TimetableDtoBuilder extends AbstractDtoBuilder<TimetableDto, Timeta
 
     @Override
     public TimetableDto build(Timetable timetable) {
-        return timetableMapper.timetableToTimetableDto(timetable);
+        return timetableMapper.toDto(timetable);
     }
 
     @Override

@@ -5,13 +5,21 @@ import org.mapstruct.Mapping;
 import ru.salix.ejournal.api.model.api.SubjectDto;
 import ru.salix.ejournal.api.model.dao.Subject;
 
-@Mapper(componentModel = "spring")
-public interface SubjectMapper {
+@Mapper(componentModel = "spring", uses = TeacherMapper.class)
+public interface SubjectMapper extends BaseMapper<Subject, SubjectDto> {
 
     @Mapping(target = "teachers", ignore = true)
-    Subject subjectDtoToSubject(SubjectDto subjectDto);
+    @FromDto
+    Subject fromDto(SubjectDto subjectDto);
+
+    @Mapping(target = "teachers", qualifiedBy = TeacherMapper.FromDtoList.class)
+    Subject fromDtoWithRelatedObjects(SubjectDto subjectDto);
 
     @Mapping(target = "teachers", ignore = true)
-    SubjectDto subjectToSubjectDto(Subject subject);
+    @ToDto
+    SubjectDto toDto(Subject subject);
+
+    @Mapping(target = "teachers", qualifiedBy = TeacherMapper.ToDtoList.class)
+    SubjectDto toDtoWithRelatedObjects(Subject subject);
 
 }

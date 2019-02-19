@@ -17,7 +17,7 @@ public class PeriodDtoBuilder extends AbstractDtoBuilder<PeriodDto, Period> {
 
     @Override
     public PeriodDto build(Period period) {
-        return periodMapper.periodToPeriodDto(period);
+        return periodMapper.toDto(period);
     }
 
     @Override

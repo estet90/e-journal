@@ -15,7 +15,7 @@ public class LessonDtoBuilder extends AbstractDtoBuilder<LessonDto, Lesson> {
 
     @Override
     public LessonDto build(Lesson lesson) {
-        return lessonMapper.lessonToLessonDto(lesson);
+        return lessonMapper.toDto(lesson);
     }
 
     @Override

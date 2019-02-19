@@ -6,8 +6,16 @@ import org.mapstruct.Mappings;
 import ru.salix.ejournal.api.model.api.SchoolClassDto;
 import ru.salix.ejournal.api.model.dao.SchoolClass;
 
-@Mapper(componentModel = "spring")
-public interface SchoolClassMapper {
+@Mapper(
+        componentModel = "spring",
+        uses = {
+                TeacherMapper.class,
+                PeriodMapper.class,
+                TimetableMapper.class,
+                PupilMapper.class
+        }
+)
+public interface SchoolClassMapper extends BaseMapper<SchoolClass, SchoolClassDto> {
 
     @Mappings({
             @Mapping(target = "teacher", ignore = true),
@@ -15,7 +23,16 @@ public interface SchoolClassMapper {
             @Mapping(target = "timetables", ignore = true),
             @Mapping(target = "pupils", ignore = true)
     })
-    SchoolClass schoolClassDtoToSchoolClass(SchoolClassDto schoolClassDto);
+    @FromDto
+    SchoolClass fromDto(SchoolClassDto schoolClassDto);
+
+    @Mappings({
+            @Mapping(target = "teacher", qualifiedBy = TeacherMapper.FromDto.class),
+            @Mapping(target = "period", qualifiedBy = PeriodMapper.FromDto.class),
+            @Mapping(target = "timetables", qualifiedBy = TimetableMapper.FromDtoList.class),
+            @Mapping(target = "pupils", qualifiedBy = PupilMapper.FromDtoList.class)
+    })
+    SchoolClass fromDtoWithRelatedObjects(SchoolClassDto schoolClassDto);
 
     @Mappings({
             @Mapping(target = "teacher", ignore = true),
@@ -23,6 +40,15 @@ public interface SchoolClassMapper {
             @Mapping(target = "timetables", ignore = true),
             @Mapping(target = "pupils", ignore = true)
     })
-    SchoolClassDto schoolClassToSchoolClassDto(SchoolClass schoolClass);
+    @ToDto
+    SchoolClassDto toDto(SchoolClass schoolClass);
+
+    @Mappings({
+            @Mapping(target = "teacher", qualifiedBy = TeacherMapper.ToDto.class),
+            @Mapping(target = "period", qualifiedBy = PeriodMapper.ToDto.class),
+            @Mapping(target = "timetables", qualifiedBy = TimetableMapper.ToDtoList.class),
+            @Mapping(target = "pupils", qualifiedBy = PupilMapper.ToDtoList.class)
+    })
+    SchoolClassDto toDtoWithRelatedObjects(SchoolClass schoolClass);
 
 }

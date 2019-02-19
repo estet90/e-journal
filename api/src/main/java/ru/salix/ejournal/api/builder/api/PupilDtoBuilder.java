@@ -16,7 +16,7 @@ public class PupilDtoBuilder extends AbstractDtoBuilder<PupilDto, Pupil> {
 
     @Override
     public PupilDto build(Pupil pupil) {
-        return pupilMapper.pupilToPupilDto(pupil);
+        return pupilMapper.toDto(pupil);
     }
 
     @Override

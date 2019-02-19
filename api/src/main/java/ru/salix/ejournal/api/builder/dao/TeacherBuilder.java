@@ -19,7 +19,7 @@ public class TeacherBuilder extends AbstractDaoBuilder<Teacher, TeacherDto> {
 
     @Override
     public Teacher build(TeacherDto teacherDto) {
-        return teacherMapper.teacherDtoToTeacher(teacherDto);
+        return teacherMapper.fromDto(teacherDto);
     }
 
     @Override

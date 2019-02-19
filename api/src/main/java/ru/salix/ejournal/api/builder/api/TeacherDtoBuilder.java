@@ -19,7 +19,7 @@ public class TeacherDtoBuilder extends AbstractDtoBuilder<TeacherDto, Teacher> {
 
     @Override
     public TeacherDto build(Teacher teacher) {
-        return teacherMapper.teacherToTeacherDto(teacher);
+        return teacherMapper.toDto(teacher);
     }
 
     @Override

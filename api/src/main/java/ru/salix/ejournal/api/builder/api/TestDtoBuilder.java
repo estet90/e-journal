@@ -16,7 +16,7 @@ public class TestDtoBuilder extends AbstractDtoBuilder<TestDto, Test> {
 
     @Override
     public TestDto build(Test test) {
-        return testMapper.testToTestDto(test);
+        return testMapper.toDto(test);
     }
 
     @Override

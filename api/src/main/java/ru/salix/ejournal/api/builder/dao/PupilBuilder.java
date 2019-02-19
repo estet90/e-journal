@@ -16,7 +16,7 @@ public class PupilBuilder extends AbstractDaoBuilder<Pupil, PupilDto> {
 
     @Override
     public Pupil build(PupilDto pupilDto) {
-        return pupilMapper.pupilDtoToPupil(pupilDto);
+        return pupilMapper.fromDto(pupilDto);
     }
 
     @Override

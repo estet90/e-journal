@@ -16,7 +16,7 @@ public class LessonBuilder extends AbstractDaoBuilder<Lesson, LessonDto> {
 
     @Override
     public Lesson build(LessonDto lessonDto) {
-        return lessonMapper.lessonDtoToLesson(lessonDto);
+        return lessonMapper.fromDto(lessonDto);
     }
 
     @Override

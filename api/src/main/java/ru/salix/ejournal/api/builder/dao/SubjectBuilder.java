@@ -16,7 +16,7 @@ public class SubjectBuilder extends AbstractDaoBuilder<Subject, SubjectDto> {
 
     @Override
     public Subject build(SubjectDto subjectDto) {
-        return subjectMapper.subjectDtoToSubject(subjectDto);
+        return subjectMapper.fromDto(subjectDto);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class PeriodBuilder extends AbstractDaoBuilder<Period, PeriodDto> {
 
     @Override
     public Period build(PeriodDto periodDto) {
-        return periodMapper.periodDtoToPeriod(periodDto);
+        return periodMapper.fromDto(periodDto);
     }
 
     @Override

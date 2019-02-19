@@ -3,28 +3,28 @@ package ru.salix.ejournal.api.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import ru.salix.ejournal.api.model.api.ExamDto;
 import ru.salix.ejournal.api.model.api.ExamMarkDto;
-import ru.salix.ejournal.api.model.api.PupilDto;
-import ru.salix.ejournal.api.model.dao.Exam;
 import ru.salix.ejournal.api.model.dao.ExamMark;
-import ru.salix.ejournal.api.model.dao.Pupil;
 
-@Mapper(componentModel = "spring")
-public interface ExamMarkMapper {
-
-    PupilMapper pupilMapper = new PupilMapperImpl();
-    ExamMapper examMapper = new ExamMapperImpl();
+@Mapper(
+        componentModel = "spring",
+        uses = {
+                PupilMapper.class,
+                ExamMapper.class
+        }
+)
+public interface ExamMarkMapper extends BaseMapper<ExamMark, ExamMarkDto> {
 
     @Mappings({
             @Mapping(target = "pupil", ignore = true),
             @Mapping(target = "exam", ignore = true)
     })
+    @FromDto
     ExamMark fromDto(ExamMarkDto examMarkDto);
 
     @Mappings({
-            @Mapping(target = "pupil", qualifiedByName = "pupilDtoToPupil"),
-            @Mapping(target = "exam", qualifiedByName = "examDtoToExam")
+            @Mapping(target = "pupil", qualifiedBy = PupilMapper.FromDto.class),
+            @Mapping(target = "exam", qualifiedBy = ExamMapper.FromDto.class)
     })
     ExamMark fromDtoWithRelatedObjects(ExamMarkDto examMarkDto);
 
@@ -32,28 +32,13 @@ public interface ExamMarkMapper {
             @Mapping(target = "pupil", ignore = true),
             @Mapping(target = "exam", ignore = true)
     })
+    @ToDto
     ExamMarkDto toDto(ExamMark examMark);
 
     @Mappings({
-            @Mapping(target = "pupil", qualifiedByName = "pupilToPupilDto"),
-            @Mapping(target = "exam", qualifiedByName = "examToExamDto")
+            @Mapping(target = "pupil", qualifiedBy = PupilMapper.ToDto.class),
+            @Mapping(target = "exam", qualifiedBy = ExamMapper.ToDto.class)
     })
     ExamMarkDto toDtoWithRelatedObjects(ExamMark examMark);
-
-    default Pupil pupilDtoToPupil(PupilDto pupil) {
-        return pupilMapper.pupilDtoToPupil(pupil);
-    }
-
-    default PupilDto pupilToPupilDto(Pupil pupil) {
-        return pupilMapper.pupilToPupilDto(pupil);
-    }
-
-    default Exam examDtoToExam(ExamDto exam) {
-        return examMapper.fromDto(exam);
-    }
-
-    default ExamDto examToExamDto(Exam exam) {
-        return examMapper.toDto(exam);
-    }
 
 }

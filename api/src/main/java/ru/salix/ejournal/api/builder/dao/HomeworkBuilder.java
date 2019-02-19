@@ -16,7 +16,7 @@ public class HomeworkBuilder extends AbstractDaoBuilder<Homework, HomeworkDto> {
 
     @Override
     public Homework build(HomeworkDto homeworkDto) {
-        return homeworkMapper.homeworkDtoToHomework(homeworkDto);
+        return homeworkMapper.fromDto(homeworkDto);
     }
 
     @Override

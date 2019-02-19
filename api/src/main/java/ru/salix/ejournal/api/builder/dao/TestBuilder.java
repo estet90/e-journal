@@ -16,7 +16,7 @@ public class TestBuilder extends AbstractDaoBuilder<Test, TestDto> {
 
     @Override
     public Test build(TestDto testDto) {
-        return testMapper.testDtoToTest(testDto);
+        return testMapper.fromDto(testDto);
     }
 
     @Override

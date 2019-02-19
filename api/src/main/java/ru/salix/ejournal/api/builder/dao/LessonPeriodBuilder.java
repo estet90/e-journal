@@ -14,7 +14,7 @@ public class LessonPeriodBuilder extends AbstractDaoBuilder<LessonPeriod, Lesson
 
     @Override
     public LessonPeriod build(LessonPeriodDto lessonPeriodDto) {
-        return lessonPeriodMapper.lessonPeriodDtoToLessonPeriod(lessonPeriodDto);
+        return lessonPeriodMapper.fromDto(lessonPeriodDto);
     }
 
     @Override

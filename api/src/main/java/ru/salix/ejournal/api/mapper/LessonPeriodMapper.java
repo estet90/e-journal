@@ -5,10 +5,12 @@ import ru.salix.ejournal.api.model.api.LessonPeriodDto;
 import ru.salix.ejournal.api.model.dao.LessonPeriod;
 
 @Mapper(componentModel = "spring")
-public interface LessonPeriodMapper {
+public interface LessonPeriodMapper extends BaseMapper<LessonPeriod, LessonPeriodDto> {
 
-    LessonPeriod lessonPeriodDtoToLessonPeriod(LessonPeriodDto lessonPeriodDto);
+    @FromDto
+    LessonPeriod fromDto(LessonPeriodDto lessonPeriodDto);
 
-    LessonPeriodDto lessonPeriodToLessonPeriodDto(LessonPeriod lessonPeriod);
+    @ToDto
+    LessonPeriodDto toDto(LessonPeriod lessonPeriod);
 
 }

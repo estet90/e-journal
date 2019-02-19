@@ -15,7 +15,7 @@ public class HomeworkDtoBuilder extends AbstractDtoBuilder<HomeworkDto, Homework
 
     @Override
     public HomeworkDto build(Homework homework) {
-        return homeworkMapper.homeworkToHomeworkDto(homework);
+        return homeworkMapper.toDto(homework);
     }
 
     @Override

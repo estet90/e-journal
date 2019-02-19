@@ -14,7 +14,7 @@ public class PeriodTypeDtoBuilder extends AbstractDtoBuilder<PeriodTypeDto, Peri
 
     @Override
     public PeriodTypeDto build(PeriodType periodType) {
-        return periodTypeMapper.periodTypeToPeriodTypeDto(periodType);
+        return periodTypeMapper.toDto(periodType);
     }
 
     @Override

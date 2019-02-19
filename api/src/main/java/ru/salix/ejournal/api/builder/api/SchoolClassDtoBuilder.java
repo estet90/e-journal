@@ -19,7 +19,7 @@ public class SchoolClassDtoBuilder extends AbstractDtoBuilder<SchoolClassDto, Sc
 
     @Override
     public SchoolClassDto build(SchoolClass schoolClass) {
-        return schoolClassMapper.schoolClassToSchoolClassDto(schoolClass);
+        return schoolClassMapper.toDto(schoolClass);
     }
 
     @Override

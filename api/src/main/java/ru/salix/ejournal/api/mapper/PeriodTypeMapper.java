@@ -5,10 +5,12 @@ import ru.salix.ejournal.api.model.api.PeriodTypeDto;
 import ru.salix.ejournal.api.model.dao.PeriodType;
 
 @Mapper(componentModel = "spring")
-public interface PeriodTypeMapper {
+public interface PeriodTypeMapper extends BaseMapper<PeriodType, PeriodTypeDto> {
 
-    PeriodType periodTypeDtoToPeriodType(PeriodTypeDto periodTypeDto);
+    @FromDto
+    PeriodType fromDto(PeriodTypeDto periodTypeDto);
 
-    PeriodTypeDto periodTypeToPeriodTypeDto(PeriodType periodType);
+    @ToDto
+    PeriodTypeDto toDto(PeriodType periodType);
 
 }

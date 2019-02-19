@@ -5,13 +5,21 @@ import org.mapstruct.Mapping;
 import ru.salix.ejournal.api.model.api.LessonDto;
 import ru.salix.ejournal.api.model.dao.Lesson;
 
-@Mapper(componentModel = "spring")
-public interface LessonMapper {
+@Mapper(componentModel = "spring", uses = TimetableMapper.class)
+public interface LessonMapper extends BaseMapper<Lesson, LessonDto> {
 
     @Mapping(target = "timetable", ignore = true)
-    Lesson lessonDtoToLesson(LessonDto lessonDto);
+    @FromDto
+    Lesson fromDto(LessonDto lessonDto);
+
+    @Mapping(target = "timetable", qualifiedBy = TimetableMapper.FromDto.class)
+    Lesson fromDtoWithRelatedObjects(LessonDto lessonDto);
 
     @Mapping(target = "timetable", ignore = true)
-    LessonDto lessonToLessonDto(Lesson lesson);
+    @ToDto
+    LessonDto toDto(Lesson lesson);
+
+    @Mapping(target = "timetable", qualifiedBy = TimetableMapper.ToDto.class)
+    LessonDto toDtoWithRelatedObjects(Lesson lesson);
 
 }

@@ -18,7 +18,7 @@ public class LessonMarkBuilder extends AbstractDaoBuilder<LessonMark, LessonMark
 
     @Override
     public LessonMark build(LessonMarkDto lessonMarkDto) {
-        return lessonMarkMapper.lessonMarkDtoToLessonMark(lessonMarkDto);
+        return lessonMarkMapper.fromDto(lessonMarkDto);
     }
 
     @Override

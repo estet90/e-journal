@@ -20,7 +20,7 @@ public class TimetableBuilder extends AbstractDaoBuilder<Timetable, TimetableDto
 
     @Override
     public Timetable build(TimetableDto timetableDto) {
-        return timetableMapper.timetableDtoToTimetable(timetableDto);
+        return timetableMapper.fromDto(timetableDto);
     }
 
     public Timetable buildWithRelatedObjects(TimetableDto timetableDto) {

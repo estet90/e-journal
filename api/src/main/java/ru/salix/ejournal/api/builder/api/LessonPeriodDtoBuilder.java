@@ -14,7 +14,7 @@ public class LessonPeriodDtoBuilder extends AbstractDtoBuilder<LessonPeriodDto, 
 
     @Override
     public LessonPeriodDto build(LessonPeriod lessonPeriod) {
-        return lessonPeriodMapper.lessonPeriodToLessonPeriodDto(lessonPeriod);
+        return lessonPeriodMapper.toDto(lessonPeriod);
     }
 
     @Override

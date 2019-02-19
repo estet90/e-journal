@@ -17,7 +17,7 @@ public class PeriodMarkDtoBuilder extends AbstractDtoBuilder<PeriodMarkDto, Peri
 
     @Override
     public PeriodMarkDto build(PeriodMark periodMark) {
-        return periodMarkMapper.periodMarkToPeriodMarkDto(periodMark);
+        return periodMarkMapper.toDto(periodMark);
     }
 
     @Override

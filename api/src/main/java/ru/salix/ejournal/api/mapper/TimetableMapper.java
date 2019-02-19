@@ -6,8 +6,17 @@ import org.mapstruct.Mappings;
 import ru.salix.ejournal.api.model.api.TimetableDto;
 import ru.salix.ejournal.api.model.dao.Timetable;
 
-@Mapper(componentModel = "spring")
-public interface TimetableMapper {
+@Mapper(
+        componentModel = "spring",
+        uses = {
+                SubjectMapper.class,
+                SchoolClassMapper.class,
+                TeacherMapper.class,
+                LessonPeriodMapper.class,
+                PeriodMapper.class
+        }
+)
+public interface TimetableMapper extends BaseMapper<Timetable, TimetableDto> {
 
     @Mappings({
             @Mapping(target = "subject", ignore = true),
@@ -16,7 +25,17 @@ public interface TimetableMapper {
             @Mapping(target = "lessonPeriod", ignore = true),
             @Mapping(target = "period", ignore = true)
     })
-    Timetable timetableDtoToTimetable(TimetableDto timetableDto);
+    @FromDto
+    Timetable fromDto(TimetableDto timetableDto);
+
+    @Mappings({
+            @Mapping(target = "subject", qualifiedBy = SubjectMapper.FromDto.class),
+            @Mapping(target = "schoolClass", qualifiedBy = SchoolClassMapper.FromDto.class),
+            @Mapping(target = "teacher", qualifiedBy = TeacherMapper.FromDto.class),
+            @Mapping(target = "lessonPeriod", qualifiedBy = LessonPeriodMapper.FromDto.class),
+            @Mapping(target = "period", qualifiedBy = PeriodMapper.FromDto.class)
+    })
+    Timetable fromDtoWithRelatedObjects(TimetableDto timetableDto);
 
     @Mappings({
             @Mapping(target = "subject", ignore = true),
@@ -25,6 +44,16 @@ public interface TimetableMapper {
             @Mapping(target = "lessonPeriod", ignore = true),
             @Mapping(target = "period", ignore = true)
     })
-    TimetableDto timetableToTimetableDto(Timetable timetable);
+    @ToDto
+    TimetableDto toDto(Timetable timetable);
+
+    @Mappings({
+            @Mapping(target = "subject", qualifiedBy = SubjectMapper.ToDto.class),
+            @Mapping(target = "schoolClass", qualifiedBy = SchoolClassMapper.ToDto.class),
+            @Mapping(target = "teacher", qualifiedBy = TeacherMapper.ToDto.class),
+            @Mapping(target = "lessonPeriod", qualifiedBy = LessonPeriodMapper.ToDto.class),
+            @Mapping(target = "period", qualifiedBy = PeriodMapper.ToDto.class)
+    })
+    TimetableDto toDtoWithRelatedObjects(Timetable timetable);
 
 }
