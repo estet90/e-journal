@@ -1,5 +1,6 @@
 package ru.salix.ejournal.api.builder.api;
 
+import ru.salix.ejournal.api.mapper.BaseMapper;
 import ru.salix.ejournal.api.model.api.BaseDtoEntity;
 import ru.salix.ejournal.api.model.dao.BaseEntity;
 
@@ -8,7 +9,13 @@ import java.util.function.Supplier;
 
 import static java.util.stream.Collectors.toList;
 
-public abstract class AbstractDtoBuilder<T extends BaseDtoEntity, V extends BaseEntity> {
+public class BaseDtoBuilder<T extends BaseDtoEntity, V extends BaseEntity> {
+
+    protected final BaseMapper<V, T> mapper;
+
+    protected BaseDtoBuilder(BaseMapper<V, T> mapper) {
+        this.mapper = mapper;
+    }
 
     /**
      * метод предназначен для сборки соответствующей сущности без внешних связей
@@ -16,7 +23,9 @@ public abstract class AbstractDtoBuilder<T extends BaseDtoEntity, V extends Base
      * @param entity DAO
      * @return T DTO
      */
-    public abstract T build(V entity);
+    public T build(V entity) {
+        return mapper.toDto(entity);
+    }
 
     /**
      * метод предназначен для сборки соответствующей сущности с внешними связями
@@ -24,7 +33,9 @@ public abstract class AbstractDtoBuilder<T extends BaseDtoEntity, V extends Base
      * @param entity DAO
      * @return T DTO
      */
-    public abstract T buildWithRelatedObjects(V entity);
+    public T buildWithRelatedObjects(V entity) {
+        return mapper.toDtoWithRelatedObjects(entity);
+    }
 
     /**
      * получение списка сущностей без связей

@@ -14,7 +14,8 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static ru.salix.ejournal.api.error.operation.ModuleOperationCode.*;
 import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationName;
 
-@RestController("/exam-marks")
+@RestController
+@RequestMapping("/exam-marks")
 @RequiredArgsConstructor
 public class ExamMarkController {
 
@@ -32,6 +33,7 @@ public class ExamMarkController {
         return fillOperationName(() -> ResponseEntity.ok(handler.findExamMarkById(id)), EXAM_MARKS_FIND_BY_ID);
     }
 
+    @GetMapping("/filter")
     public ResponseEntity<List<ExamMarkDto>> filter(
             @RequestParam(name = "id", required = false) Long id,
             @RequestParam(name = "datetimeFrom", required = false) LocalDateTime datetimeFrom,

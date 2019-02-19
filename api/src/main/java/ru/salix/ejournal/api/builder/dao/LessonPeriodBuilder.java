@@ -1,25 +1,15 @@
 package ru.salix.ejournal.api.builder.dao;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.salix.ejournal.api.mapper.LessonPeriodMapper;
 import ru.salix.ejournal.api.model.api.LessonPeriodDto;
 import ru.salix.ejournal.api.model.dao.LessonPeriod;
-import ru.salix.ejournal.api.mapper.LessonPeriodMapper;
 
 @Component
-@RequiredArgsConstructor
-public class LessonPeriodBuilder extends AbstractDaoBuilder<LessonPeriod, LessonPeriodDto> {
+public class LessonPeriodBuilder extends BaseDaoBuilder<LessonPeriod, LessonPeriodDto> {
 
-    private final LessonPeriodMapper lessonPeriodMapper;
-
-    @Override
-    public LessonPeriod build(LessonPeriodDto lessonPeriodDto) {
-        return lessonPeriodMapper.fromDto(lessonPeriodDto);
-    }
-
-    @Override
-    public LessonPeriod buildWithRelatedObjects(LessonPeriodDto lessonPeriodDto) {
-        return build(lessonPeriodDto);
+    public LessonPeriodBuilder(LessonPeriodMapper mapper) {
+        super(mapper);
     }
 
 }

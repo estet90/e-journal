@@ -14,7 +14,8 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static ru.salix.ejournal.api.error.operation.ModuleOperationCode.*;
 import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationName;
 
-@RestController("/lesson-marks")
+@RestController
+@RequestMapping("/lesson-marks")
 @RequiredArgsConstructor
 public class LessonMarkController {
 
@@ -32,6 +33,7 @@ public class LessonMarkController {
         return fillOperationName(() -> ResponseEntity.ok(handler.findLessonMarkById(id)), LESSON_MARKS_FIND_BY_ID);
     }
 
+    @GetMapping("/filter")
     public ResponseEntity<List<LessonMarkDto>> filter(
             @RequestParam(name = "id", required = false) Long id,
             @RequestParam(name = "datetimeFrom", required = false) LocalDateTime datetimeFrom,

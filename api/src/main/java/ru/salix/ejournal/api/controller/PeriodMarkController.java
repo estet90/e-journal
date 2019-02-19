@@ -14,7 +14,8 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static ru.salix.ejournal.api.error.operation.ModuleOperationCode.*;
 import static ru.salix.ejournal.api.helper.ControllerWrapper.fillOperationName;
 
-@RestController("/period-marks")
+@RestController
+@RequestMapping("/period-marks")
 @RequiredArgsConstructor
 public class PeriodMarkController {
 
@@ -32,6 +33,7 @@ public class PeriodMarkController {
         return fillOperationName(() -> ResponseEntity.ok(handler.findPeriodMarkById(id)), EXAM_MARKS_FIND_BY_ID);
     }
 
+    @GetMapping("/filter")
     public ResponseEntity<List<PeriodMarkDto>> filter(
             @RequestParam(name = "id", required = false) Long id,
             @RequestParam(name = "dateFrom", required = false) LocalDate dateFrom,
