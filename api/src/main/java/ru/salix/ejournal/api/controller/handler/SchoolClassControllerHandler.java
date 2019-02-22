@@ -60,7 +60,7 @@ public class SchoolClassControllerHandler {
             var pupil = ofNullable(pupilService.findById(idPupil))
                     .orElseThrow(() -> notFoundInDbException(String.format("Не найден ученик по id = %s", idPupil)));
             if (idClass.equals(pupil.getSchoolClass().getId())) {
-                throw alreadyExistsInDbException(String.format("Ученик с id = %s уже естьв классе с id = %s", idClass, idPupil));
+                throw alreadyExistsInDbException(String.format("Ученик с id = %s уже есть в классе с id = %s", idClass, idPupil));
             }
             var schoolClass = ofNullable(schoolClassService.findById(idClass))
                     .orElseThrow(() -> notFoundInDbException(String.format("Не найден класс по id = %s", idClass)));

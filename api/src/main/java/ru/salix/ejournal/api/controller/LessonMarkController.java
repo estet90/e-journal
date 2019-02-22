@@ -45,7 +45,10 @@ public class LessonMarkController {
             @RequestParam(name = "teacherPatronymic", required = false) String teacherPatronymic,
             @RequestParam(name = "lessonMark", defaultValue = "false") Boolean lessonMark,
             @RequestParam(name = "testMark", defaultValue = "false") Boolean testMark,
-            @RequestParam(name = "homeworkMark", defaultValue = "false") Boolean homeworkMark
+            @RequestParam(name = "homeworkMark", defaultValue = "false") Boolean homeworkMark,
+            @RequestParam(name = "pupilName", required = false) String pupilName,
+            @RequestParam(name = "pupilSurname", required = false) String pupilSurname,
+            @RequestParam(name = "pupilPatronymic", required = false) String pupilPatronymic
     ) {
         var filter = LessonMarkFilterDto.builder()
                 .id(id)
@@ -59,6 +62,9 @@ public class LessonMarkController {
                 .lessonMark(lessonMark)
                 .testMark(testMark)
                 .homeworkMark(homeworkMark)
+                .pupilName(pupilName)
+                .pupilSurname(pupilSurname)
+                .pupilPatronymic(pupilPatronymic)
                 .build();
         return fillOperationName(() -> ResponseEntity.ok(handler.filter(filter)), LESSON_MARKS_FILTER);
     }

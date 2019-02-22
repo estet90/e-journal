@@ -42,7 +42,11 @@ public class PeriodMarkController {
             @RequestParam(name = "className", required = false) String className,
             @RequestParam(name = "teacherName", required = false) String teacherName,
             @RequestParam(name = "teacherSurname", required = false) String teacherSurname,
-            @RequestParam(name = "teacherPatronymic", required = false) String teacherPatronymic
+            @RequestParam(name = "teacherPatronymic", required = false) String teacherPatronymic,
+            @RequestParam(name = "periodTypeName", required = false) String periodTypeName,
+            @RequestParam(name = "pupilName", required = false) String pupilName,
+            @RequestParam(name = "pupilSurname", required = false) String pupilSurname,
+            @RequestParam(name = "pupilPatronymic", required = false) String pupilPatronymic
     ) {
         var filter = PeriodMarkFilterDto.builder()
                 .id(id)
@@ -53,6 +57,10 @@ public class PeriodMarkController {
                 .teacherName(teacherName)
                 .teacherSurname(teacherSurname)
                 .teacherPatronymic(teacherPatronymic)
+                .periodTypeName(periodTypeName)
+                .pupilName(pupilName)
+                .pupilSurname(pupilSurname)
+                .pupilPatronymic(pupilPatronymic)
                 .build();
         return fillOperationName(() -> ResponseEntity.ok(handler.filter(filter)), EXAM_MARKS_FILTER);
     }

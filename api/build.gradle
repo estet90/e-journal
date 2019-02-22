@@ -71,7 +71,7 @@ compileJava {
 }
 
 clean {
-    def relativePath = "out/production/"
+    def relativePath = "out"
     def generatedSourceDir = project.file(relativePath)
     doFirst {
         project.delete(generatedSourceDir)
