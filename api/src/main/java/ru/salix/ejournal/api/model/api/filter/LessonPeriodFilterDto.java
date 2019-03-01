@@ -14,7 +14,7 @@ public class LessonPeriodFilterDto {
     private LocalTime timeStartTo;
     private LocalTime timeEndFrom;
     private LocalTime timeEndTo;
-    private int number;
-    private int shift;
+    private Integer number;
+    private Integer shift;
 
 }
