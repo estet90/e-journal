@@ -16,6 +16,9 @@ spring:
     user: postgres
     password: postgres
     url: jdbc:postgresql://localhost:5432/ejournal
+  jackson:
+    default-property-inclusion: non_null
+    visibility.field: any
 
 logging.level:
   ru.salix.ejournal: debug

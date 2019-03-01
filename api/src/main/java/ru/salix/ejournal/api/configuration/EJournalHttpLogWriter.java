@@ -6,6 +6,8 @@ import org.zalando.logbook.Correlation;
 import org.zalando.logbook.HttpLogWriter;
 import org.zalando.logbook.Precorrelation;
 
+import javax.annotation.Nonnull;
+
 import static ru.salix.ejournal.api.constant.ThreadContextField.TRACE_ID;
 
 public class EJournalHttpLogWriter implements HttpLogWriter {
@@ -17,13 +19,13 @@ public class EJournalHttpLogWriter implements HttpLogWriter {
     }
 
     @Override
-    public void writeRequest(Precorrelation<String> precorrelation) {
+    public void writeRequest(@Nonnull Precorrelation<String> precorrelation) {
         ThreadContext.put(TRACE_ID, precorrelation.getId());
         logger.debug(precorrelation.getRequest());
     }
 
     @Override
-    public void writeResponse(Correlation<String, String> correlation) {
+    public void writeResponse(@Nonnull Correlation<String, String> correlation) {
         logger.debug(correlation.getResponse());
         ThreadContext.clearAll();
     }

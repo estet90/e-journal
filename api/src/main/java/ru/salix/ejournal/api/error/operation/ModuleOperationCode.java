@@ -89,7 +89,11 @@ public enum ModuleOperationCode implements OperationCode {
     HOMEWORK_MARKS_FILTER("1003", "homeworkMarksFilter"),
     HOMEWORK_MARKS_CREATE("1004", "homeworkMarksCreate"),
     HOMEWORK_MARKS_UPDATE("1005", "homeworkMarksUpdate"),
-    HOMEWORK_MARKS_DELETE("1006", "homeworkMarksDelete");
+    HOMEWORK_MARKS_DELETE("1006", "homeworkMarksDelete"),
+
+    LESSON_PERIODS_FIND("1101", "lessonPeriodsFind"),
+    LESSON_PERIODS_FIND_BY_ID("1102", "lessonPeriodsFindById"),
+    LESSON_PERIODS_FILTER("1103", "lessonPeriodsFilter");
 
     private final String code;
     private final String name;

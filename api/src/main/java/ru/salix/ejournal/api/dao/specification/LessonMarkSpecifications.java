@@ -7,9 +7,7 @@ import ru.salix.ejournal.api.model.dao.*;
 
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
-import java.util.function.Function;
 
-import static java.util.Optional.ofNullable;
 import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 
 @Component

@@ -2,8 +2,8 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <include file="ejournal2/issue.changelog.xml" relativeToChangelogFile="true"/>
-    <include file="ejournal9/issue.changelog.xml" relativeToChangelogFile="true"/>
-    <include file="ejournal12/issue.changelog.xml" relativeToChangelogFile="true"/>
-    <include file="ejournal13/issue.changelog.xml" relativeToChangelogFile="true"/>
+    <changeSet id="ejrnl13_1" author="dkononov">
+        <comment>заполнение таблицы звонков</comment>
+        <sqlFile path="dml.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>
