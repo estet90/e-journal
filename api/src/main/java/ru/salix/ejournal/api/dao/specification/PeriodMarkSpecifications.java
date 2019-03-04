@@ -14,7 +14,7 @@ import static ru.salix.ejournal.api.helper.SpecificationHelper.*;
 public class PeriodMarkSpecifications {
 
     public Specification<PeriodMark> filterSpecification(PeriodMarkFilterDto filter) {
-        return (Specification<PeriodMark>) (root, query, builder) -> {
+        return (root, query, builder) -> {
             var teacherJoin = teacherJoin(filter, root);
             var pupilJoin = pupilJoin(filter, root);
             var periodJoin = periodJoin(filter, root);

@@ -93,7 +93,17 @@ public enum ModuleOperationCode implements OperationCode {
 
     LESSON_PERIODS_FIND("1101", "lessonPeriodsFind"),
     LESSON_PERIODS_FIND_BY_ID("1102", "lessonPeriodsFindById"),
-    LESSON_PERIODS_FILTER("1103", "lessonPeriodsFilter");
+    LESSON_PERIODS_FILTER("1103", "lessonPeriodsFilter"),
+
+    PERIOD_TYPES_FIND("1201", "periodTypesFind"),
+    PERIOD_TYPES_FIND_BY_ID("1202", "periodTypesFindById"),
+    PERIOD_TYPES_FILTER("1203", "periodTypesFilter"),
+
+    PERIODS_FIND("1301", "periodsFind"),
+    PERIODS_FIND_BY_ID("1302", "periodsFindById"),
+    PERIODS_FILTER("1303", "periodsFilter"),
+    PERIODS_CREATE("1304", "periodsCreate"),
+    PERIODS_UPDATE("1305", "periodsUpdate");
 
     private final String code;
     private final String name;
