@@ -27,10 +27,7 @@ public class TimetableControllerHandler {
     }
 
     public TimetableDto findTimetableById(long id) {
-        return wrap(() -> {
-            var teacher = timetableService.findById(id);
-            return timetableDtoBuilder.build(teacher);
-        });
+        return wrap(() -> timetableDtoBuilder.buildWithRelatedObjects(timetableService.findById(id)));
     }
 
     public List<TimetableDto> filter(TimetableFilterDto filter) {

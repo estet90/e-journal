@@ -45,10 +45,7 @@ public class TeacherControllerHandler {
     }
 
     public TeacherDto findTeacherById(long id) {
-        return wrap(() -> {
-            var teacher = teacherService.findById(id);
-            return teacherDtoBuilder.build(teacher);
-        });
+        return wrap(() -> teacherDtoBuilder.buildWithRelatedObjects(teacherService.findById(id)));
     }
 
     public List<TeacherDto> filter(TeacherFilterDto filter) {

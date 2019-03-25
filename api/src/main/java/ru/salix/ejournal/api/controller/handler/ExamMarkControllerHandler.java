@@ -35,7 +35,7 @@ public class ExamMarkControllerHandler {
     }
 
     public ExamMarkDto findExamMarkById(Long id) {
-        return wrap(() -> examMarkDtoBuilder.build(examMarkService.findById(id)));
+        return wrap(() -> examMarkDtoBuilder.buildWithRelatedObjects(examMarkService.findById(id)));
     }
 
     public List<ExamMarkDto> filter(ExamMarkFilterDto filter) {

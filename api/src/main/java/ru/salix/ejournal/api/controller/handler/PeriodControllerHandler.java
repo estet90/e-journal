@@ -33,7 +33,7 @@ public class PeriodControllerHandler {
     }
 
     public PeriodDto findPeriodById(Long id) {
-        return wrap(() -> periodDtoBuilder.build(periodService.findById(id)));
+        return wrap(() -> periodDtoBuilder.buildWithRelatedObjects(periodService.findById(id)));
     }
 
     public List<PeriodDto> filter(PeriodFilterDto filter) {

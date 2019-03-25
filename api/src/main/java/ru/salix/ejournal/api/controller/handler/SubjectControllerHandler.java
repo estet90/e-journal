@@ -27,7 +27,7 @@ public class SubjectControllerHandler {
     }
 
     public SubjectDto findSubjectById(Long id) {
-        return wrap(() -> subjectDtoBuilder.build(subjectService.findById(id)));
+        return wrap(() -> subjectDtoBuilder.buildWithRelatedObjects(subjectService.findById(id)));
     }
 
     public List<SubjectDto> filter(SubjectFilterDto filter) {

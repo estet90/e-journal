@@ -31,7 +31,7 @@ public class SchoolClassControllerHandler {
     }
 
     public SchoolClassDto findClassById(Long id) {
-        return wrap(() -> schoolClassDtoBuilder.build(schoolClassService.findById(id)));
+        return wrap(() -> schoolClassDtoBuilder.buildWithRelatedObjects(schoolClassService.findById(id)));
     }
 
     public List<SchoolClassDto> filter(SchoolClassFilterDto filter) {

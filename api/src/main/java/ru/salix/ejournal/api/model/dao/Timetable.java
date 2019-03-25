@@ -31,7 +31,7 @@ public class Timetable extends BaseEntity {
     @JoinColumn(name = "id_period")
     private Period period;
 
-    @Column(name = "ay_of_week")
+    @Column(name = "day_of_week")
     private Integer dayOfWeek;
 
 }

@@ -103,7 +103,13 @@ public enum ModuleOperationCode implements OperationCode {
     PERIODS_FIND_BY_ID("1302", "periodsFindById"),
     PERIODS_FILTER("1303", "periodsFilter"),
     PERIODS_CREATE("1304", "periodsCreate"),
-    PERIODS_UPDATE("1305", "periodsUpdate");
+    PERIODS_UPDATE("1305", "periodsUpdate"),
+
+    TESTS_FIND("1401", "testsFind"),
+    TESTS_FIND_BY_ID("1402", "testsFindById"),
+    TESTS_FILTER("1403", "testsFilter"),
+    TESTS_CREATE("1404", "testsCreate"),
+    TESTS_UPDATE("1405", "testsUpdate");
 
     private final String code;
     private final String name;

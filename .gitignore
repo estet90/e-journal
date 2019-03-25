@@ -12,3 +12,5 @@ out/
 lombok.config
 gradlew*
 gradle-wrapper*
+*.png
+*.uml

@@ -35,7 +35,7 @@ public class LessonMarkControllerHandler {
     }
 
     public LessonMarkDto findLessonMarkById(Long id) {
-        return wrap(() -> lessonMarkDtoBuilder.build(lessonMarkService.findById(id)));
+        return wrap(() -> lessonMarkDtoBuilder.buildWithRelatedObjects(lessonMarkService.findById(id)));
     }
 
     public List<LessonMarkDto> filter(LessonMarkFilterDto filter) {

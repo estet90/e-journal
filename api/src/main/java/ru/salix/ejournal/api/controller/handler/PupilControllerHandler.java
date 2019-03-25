@@ -27,10 +27,7 @@ public class PupilControllerHandler {
     }
 
     public PupilDto findPupilById(Long id) {
-        return wrap(() -> {
-            var pupil = pupilService.findById(id);
-            return pupilDtoBuilder.build(pupil);
-        });
+        return wrap(() -> pupilDtoBuilder.buildWithRelatedObjects(pupilService.findById(id)));
     }
 
     public List<PupilDto> filter(PupilFilterDto filter) {

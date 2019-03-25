@@ -37,7 +37,7 @@ public class PeriodMarkControllerHandler {
     }
 
     public PeriodMarkDto findPeriodMarkById(Long id) {
-        return wrap(() -> periodMarkDtoBuilder.build(periodMarkService.findById(id)));
+        return wrap(() -> periodMarkDtoBuilder.buildWithRelatedObjects(periodMarkService.findById(id)));
     }
 
     public List<PeriodMarkDto> filter(PeriodMarkFilterDto filter) {

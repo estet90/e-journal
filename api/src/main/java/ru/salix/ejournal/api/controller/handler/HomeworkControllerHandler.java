@@ -32,7 +32,7 @@ public class HomeworkControllerHandler {
     }
 
     public HomeworkDto findHomeworkById(Long id) {
-        return wrap(() -> homeworkDtoBuilder.build(homeworkService.findById(id)));
+        return wrap(() -> homeworkDtoBuilder.buildWithRelatedObjects(homeworkService.findById(id)));
     }
 
     public List<HomeworkDto> filter(HomeworkFilterDto filter) {

@@ -23,7 +23,7 @@ public class LessonPeriodControllerHandler {
     }
 
     public LessonPeriodDto findLessonPeriodById(Long id) {
-        return wrap(() -> lessonPeriodDtoBuilder.build(lessonPeriodService.findById(id)));
+        return wrap(() -> lessonPeriodDtoBuilder.buildWithRelatedObjects(lessonPeriodService.findById(id)));
     }
 
     public List<LessonPeriodDto> filter(LessonPeriodFilterDto filter) {
