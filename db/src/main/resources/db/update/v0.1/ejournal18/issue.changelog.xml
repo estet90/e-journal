@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="ejrnl18_1" author="dkononov">
+        <comment>смена типа колонки для таблицы классов</comment>
+        <sqlFile path="ddl.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_2" author="dkononov">
+        <comment>ограничение для таблицы учителей</comment>
+        <sqlFile path="ddl_2.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_3" author="dkononov">
+        <comment>наполнение таблицы учителей</comment>
+        <sqlFile path="dml.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_4" author="dkononov">
+        <comment>ограничение для таблицы классов</comment>
+        <sqlFile path="ddl_3.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_5" author="dkononov">
+        <comment>наполнение таблицы классов</comment>
+        <sqlFile path="dml_2.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_6" author="dkononov">
+        <comment>ограничение для таблицы учеников</comment>
+        <sqlFile path="ddl_4.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_7" author="dkononov">
+        <comment>наполнение таблицы учеников</comment>
+        <sqlFile path="dml_3.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_8" author="dkononov">
+        <comment>выдача прав</comment>
+        <sqlFile path="dcl.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_9" author="dkononov">
+        <comment>ограничение для таблицы предметов</comment>
+        <sqlFile path="ddl_5.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_10" author="dkononov">
+        <comment>наполнение таблицы предметов</comment>
+        <sqlFile path="dml_4.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="ejrnl18_11" author="dkononov">
+        <comment>наполнение таблицы предметов-учителей</comment>
+        <sqlFile path="dml_5.sql" endDelimiter=";" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>

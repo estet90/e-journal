@@ -8,4 +8,5 @@
     <include file="ejournal13/issue.changelog.xml" relativeToChangelogFile="true"/>
     <include file="ejournal16/issue.changelog.xml" relativeToChangelogFile="true"/>
     <include file="ejournal15/issue.changelog.xml" relativeToChangelogFile="true"/>
+    <include file="ejournal18/issue.changelog.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
